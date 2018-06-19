@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fa_android">&#xf17b;</string>
+    <string name="fa_chart_line">&#xf201;</string>
+    <string name="fa_unlock_alt">&#xf13e;</string>
+    <string name="fa_user_astronaut">&#xf4fb;</string>
+</resources>
