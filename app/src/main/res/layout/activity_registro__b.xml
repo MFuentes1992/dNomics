@@ -36,10 +36,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="451dp"
+            android:layout_height="700dp"
             android:layout_marginLeft="50px"
             android:layout_marginRight="50px"
-            android:layout_marginTop="100px"
+            android:layout_marginTop="50px"
             android:orientation="vertical"
             android:theme="@style/ActionBar">
 
@@ -56,12 +56,25 @@
                 android:layout_height="300dp"
                 />
 
+            <TextView
+                android:id="@+id/lblCountry"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:gravity="center_vertical"
+                android:text="@string/country" />
+            
+            <Spinner
+                android:id="@+id/spinnerRegistroCountry"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:layout_height="50dp"></Spinner>
+
             <Button
                 android:id="@+id/btnNextRegistroB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorControlNormalActionBar"
-                android:text="@string/siguiente"
+                android:text="@string/guardar"
                 android:textColor="@color/colorControlNormal" />
 
         </LinearLayout>

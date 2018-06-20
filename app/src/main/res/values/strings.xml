@@ -11,7 +11,32 @@
     <string name="uniqueid">&#xf084; Unique ID</string>
     <string name="email">&#xf0e0; Email</string>
     <string name="birthDate">&#xf073; Fecha nacimiento</string>
+    <string name="country">&#xf0ac; Pais</string>
     <string name="siguiente">&#xf0a4; Siguiente</string>
+    <string name="guardar">&#xf0c7; Guardar</string>
     <string name="showMessageAtention">¡Atención!</string>
     <string name="emptyField">Uno de los campos está vacío. Por favor, ingresa un valor admitido para continuar.</string>
+
+    <string-array name="registro_country">
+        <item name="AS01">Afganistán</item>
+        <item name="EU01">Albania</item>
+        <item name="EU02">Alemania</item>
+        <item name="EU03">Andorra</item>
+        <item name="AF01">Angola</item>
+        <item name="NA01">Anguila</item>
+        <item name="AN">Antártida</item>
+        <item name="NA02">Antigua y Barbuda</item>
+        <item name="AS02">Arabia Saudita</item>
+        <item name="AF">Argelia</item>
+        <item name="SA">Argentina</item>
+        <item name="AS03">Armenia</item>
+        <item name="NA03">Aruba</item>
+        <item name="OC">Australia</item>
+        <item name="EU">Austria</item>
+        <item name="AS04">Azerbaiyán</item>
+        <item name="NA04">Bahamas</item>
+        <item name="AS05">Bangladés</item>
+        <item name="NA05">Barbados</item>
+        <item name="AS06">Baréin</item>
+    </string-array>
 </resources>
