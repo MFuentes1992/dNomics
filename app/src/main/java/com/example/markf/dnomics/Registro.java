@@ -30,6 +30,13 @@ public class Registro extends AppCompatActivity {
 
     Button btnNextTRegistro;
 
+    String usuario;
+    String password;
+    String nombre;
+    String surname;
+    String uniqueID;
+    String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,12 +81,26 @@ public class Registro extends AppCompatActivity {
                         if(functionHelper.textfieldValidator(txtUsuarioRegistro)){
                             functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emptyFieldMsg(v));
                         }*/
+                        getInfo();
                         Intent intent = new Intent(Registro.this, Registro_B.class);
-                        intent.putExtra("key","");
+                        intent.putExtra("_usuario",usuario);
+                        intent.putExtra("_password",password);
+                        intent.putExtra("_nombre",nombre);
+                        intent.putExtra("_surname",surname);
+                        intent.putExtra("_uniqueid",uniqueID);
+                        intent.putExtra("_email",email);
                         Registro.this.startActivity(intent);
                     }
                 }
         );
     }
 
+    public void getInfo(){
+        usuario = txtUsuarioRegistro.getText().toString();
+        password = txtPasswordRegistro.getText().toString();
+        nombre = txtNombreRegistro.getText().toString();
+        surname = txtApellidoRegistro.getText().toString();
+        uniqueID = txtUniqueRegistro.getText().toString();
+        email = txtEmailRegistro.getText().toString();
+    }
 }
