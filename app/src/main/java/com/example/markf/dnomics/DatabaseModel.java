@@ -23,7 +23,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String strQueryCountry = "CREATE TABLE country (country_alphaID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, country_alpha TEXT NOT NULL, name TEXT NOT NULL, description TEXT NOT NULL, lat TEXT NOT NULL, long TEXT NOT NULL);";
+        String strQueryCountry = "CREATE TABLE country (country_alphaID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, country_alpha TEXT NOT NULL, name TEXT NOT NULL);";
 
         String strQueryPerson = "CREATE TABLE person (personID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, surname TEXT NOT NULL, uniqueID TEXT NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL, country_alphaID INTEGER NOT NULL, birth_date TEXT NOT NULL, create_date TEXT NOT NULL, update_date TEXT NOT NULL, img_url TEXT NOT NULL, estatus INTEGER NOT NULL);";
 
@@ -38,19 +38,14 @@ public class DatabaseModel extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertCountry(String country_alpha, String name, String description, String lat, String _long){
-        boolean res = false;
+    public long insertCountry(String country_alpha, String name, String description, String lat, String _long){
         String tableName = "country";
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("country_alpha", country_alpha);
         contentValues.put("name", name);
-        contentValues.put("description", description);
-        contentValues.put("lat", lat);
-        contentValues.put("long", _long);
         long _res = db.insert(tableName, null, contentValues);
-        if(_res != -1) {res = true;}
-        return res;
+        return _res;
     }
 
     public ArrayList<CountryTO> getAllCountryData() {
