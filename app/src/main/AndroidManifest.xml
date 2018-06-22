@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Registro"
+            android:name=".Registro_A"
             android:label="@string/title_activity_registro"
             android:theme="@style/AppTheme" />
         <activity android:name=".Registro_B"></activity>

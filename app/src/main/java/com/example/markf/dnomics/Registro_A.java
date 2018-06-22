@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class Registro extends AppCompatActivity {
+public class Registro_A extends AppCompatActivity {
 
     TextView lblUsuario;
     TextView lblPassword;
@@ -40,7 +40,7 @@ public class Registro extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
+        setContentView(R.layout.activity_registro_a);
         Intent intent = getIntent();
         String value = intent.getStringExtra("key");
 
@@ -82,14 +82,14 @@ public class Registro extends AppCompatActivity {
                             functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emptyFieldMsg(v));
                         }*/
                         getInfo();
-                        Intent intent = new Intent(Registro.this, Registro_B.class);
+                        Intent intent = new Intent(Registro_A.this, Registro_B.class);
                         intent.putExtra("_usuario",usuario);
                         intent.putExtra("_password",password);
                         intent.putExtra("_nombre",nombre);
                         intent.putExtra("_surname",surname);
                         intent.putExtra("_uniqueid",uniqueID);
                         intent.putExtra("_email",email);
-                        Registro.this.startActivity(intent);
+                        Registro_A.this.startActivity(intent);
                     }
                 }
         );
