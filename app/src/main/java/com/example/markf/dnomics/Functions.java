@@ -100,7 +100,7 @@ public class Functions {
         return flag;
     }
 
-    public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password, String email, String country, String birthDate, String createDate, String updateDate, String imgurl){
+    public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password, String email, int country, String birthDate, String createDate, String updateDate, String imgurl){
         PersonTO person = new PersonTO();
         person.setName(nombre);
         person.setSurName(surname);
@@ -108,7 +108,7 @@ public class Functions {
         person.setUserName(usuario);
         person.setPassword(password);
         person.setEmail(email);
-        person.setCountry_alphaID(1);
+        person.setCountry_alphaID(country);
         person.setBirthDate(birthDate);
         person.setCreateDate(createDate);
         person.setImgUrl(imgurl);

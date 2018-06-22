@@ -28,7 +28,7 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
 
     Spinner spinnerRegistroCountry;
 
-    String birthDate;
+    String alphaCountry;
     String country;
     String usuario;
     String password;
@@ -89,12 +89,14 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        country = spinnerRegistroCountry.getSelectedItem().toString();
+        alphaCountry = "CO"+spinnerRegistroCountry.getSelectedItemPosition();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        country = spinnerRegistroCountry.getSelectedItem().toString();
+        alphaCountry = "CO"+spinnerRegistroCountry.getSelectedItemPosition();
     }
 
     public void saveData(){
@@ -103,7 +105,8 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
                     @Override
                     public void onClick(View v) {
                         Functions helper = new Functions();
-                        boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, country, getBirthDate(), getCurrentDate(), getCurrentDate(), "img/profile/profile.png"));
+                        long countryID = dbModel.insertCountry(alphaCountry, country);
+                        boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, (int)countryID, getBirthDate(), getCurrentDate(), getCurrentDate(), "img/profile/profile.png"));
                         if(isInserted){
                             Toast.makeText(Registro_B.this, "Data inserted correctly", Toast.LENGTH_LONG).show();
                         }else

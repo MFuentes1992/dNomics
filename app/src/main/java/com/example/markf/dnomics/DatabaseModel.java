@@ -38,7 +38,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertCountry(String country_alpha, String name, String description, String lat, String _long){
+    public long insertCountry(String country_alpha, String name){
         String tableName = "country";
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
