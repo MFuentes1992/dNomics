@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Registro_A extends AppCompatActivity {
@@ -37,6 +38,8 @@ public class Registro_A extends AppCompatActivity {
     String uniqueID;
     String email;
 
+    LinearLayout registroAContainer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,8 @@ public class Registro_A extends AppCompatActivity {
         txtUniqueRegistro = (EditText) findViewById(R.id.txtUniqueRegistro);
         txtEmailRegistro = (EditText) findViewById(R.id.txtEmailRegistro);
 
+        registroAContainer = (LinearLayout)findViewById(R.id.registroAContainer);
+
         lblPassword.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblNombre.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblSurname.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
@@ -77,19 +82,21 @@ public class Registro_A extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /*Functions functionHelper = new Functions();
-                        if(functionHelper.textfieldValidator(txtUsuarioRegistro)){
+                        Functions functionHelper = new Functions();
+                        /*if(functionHelper.textfieldValidator(txtUsuarioRegistro)){
                             functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emptyFieldMsg(v));
                         }*/
-                        getInfo();
-                        Intent intent = new Intent(Registro_A.this, Registro_B.class);
-                        intent.putExtra("_usuario",usuario);
-                        intent.putExtra("_password",password);
-                        intent.putExtra("_nombre",nombre);
-                        intent.putExtra("_surname",surname);
-                        intent.putExtra("_uniqueid",uniqueID);
-                        intent.putExtra("_email",email);
-                        Registro_A.this.startActivity(intent);
+                        if(!functionHelper.hasEmptyFields(registroAContainer)){
+                            getInfo();
+                            Intent intent = new Intent(Registro_A.this, Registro_B.class);
+                            intent.putExtra("_usuario",usuario);
+                            intent.putExtra("_password",password);
+                            intent.putExtra("_nombre",nombre);
+                            intent.putExtra("_surname",surname);
+                            intent.putExtra("_uniqueid",uniqueID);
+                            intent.putExtra("_email",email);
+                            Registro_A.this.startActivity(intent);
+                        }
                     }
                 }
         );

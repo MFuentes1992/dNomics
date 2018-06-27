@@ -2,8 +2,14 @@ package com.example.markf.dnomics;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Outline;
+import android.graphics.Paint;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.nio.Buffer;
@@ -92,11 +98,18 @@ public class Functions {
         alert.show();
     }
 
-    public boolean textfieldValidator(EditText textfield){
+    public boolean hasEmptyFields(LinearLayout layout){
         boolean flag = false;
-        String content = textfield.getText().toString();
-        int counter = content.length();
-        flag = counter <= 0 ? true: false;
+        for(int i = 0; i < layout.getChildCount(); i++){
+            if(layout.getChildAt(i) instanceof EditText && ((EditText) layout.getChildAt(i)).getText().toString().equals("")){
+                ShapeDrawable shape = new ShapeDrawable(new RectShape());
+                shape.getPaint().setColor(Color.RED);
+                shape.getPaint().setStyle(Paint.Style.STROKE);
+                shape.getPaint().setStrokeWidth(3);
+                ((EditText) layout.getChildAt(i)).setBackground(shape);
+                flag = true;
+            }
+        }
         return flag;
     }
 
