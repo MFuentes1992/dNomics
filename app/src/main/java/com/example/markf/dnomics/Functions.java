@@ -91,6 +91,10 @@ public class Functions {
         return v.getContext().getString(R.string.emptyField);
     }
 
+    public String emailRegistered(View v){
+        return v.getContext().getString(R.string.emailRegistered);
+    }
+
     public void showMessage(View v, String title, String message){
         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
         alert.setCancelable(true);
@@ -123,6 +127,13 @@ public class Functions {
         person.setImgUrl(imgurl);
         person.setUpdateDate(updateDate);
         return person;
+    }
+
+    public boolean isEmailRegistered(DatabaseModel model, String email){
+        boolean flag = false;
+        PersonTO person = model.getPersonByEmail(email);
+        flag = person.getPersonID() > 0  ? true : false;
+        return flag;
     }
 
 }
