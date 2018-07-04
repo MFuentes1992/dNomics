@@ -15,7 +15,7 @@
     <string name="siguiente">&#xf0a4; Siguiente</string>
     <string name="guardar">&#xf0c7; Guardar</string>
     <string name="showMessageAtention">¡Atención!</string>
-    <string name="emptyField">Uno de los campos está vacío. Por favor, ingresa un valor admitido para continuar.</string>
+    <string name="emptyField">Alguno o todos los campos están vacíos, por favor, ingresa un valor para continuar. \nGracias.</string>
 
     <string-array name="registro_country">
         <item name="AS01">Afganistán</item>

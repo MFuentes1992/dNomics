@@ -83,10 +83,7 @@ public class Registro_A extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Functions functionHelper = new Functions();
-                        /*if(functionHelper.textfieldValidator(txtUsuarioRegistro)){
-                            functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emptyFieldMsg(v));
-                        }*/
-                        if(!functionHelper.hasEmptyFields(registroAContainer)){
+                        if(functionHelper.hasEmptyFields(registroAContainer) <= 0){
                             getInfo();
                             Intent intent = new Intent(Registro_A.this, Registro_B.class);
                             intent.putExtra("_usuario",usuario);
@@ -96,6 +93,8 @@ public class Registro_A extends AppCompatActivity {
                             intent.putExtra("_uniqueid",uniqueID);
                             intent.putExtra("_email",email);
                             Registro_A.this.startActivity(intent);
+                        }else{
+                            functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emptyFieldMsg(v));
                         }
                     }
                 }

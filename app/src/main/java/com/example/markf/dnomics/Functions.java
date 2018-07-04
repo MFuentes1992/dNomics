@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.ArcShape;
 import android.graphics.drawable.shapes.RectShape;
 import android.view.View;
 import android.widget.EditText;
@@ -98,19 +99,14 @@ public class Functions {
         alert.show();
     }
 
-    public boolean hasEmptyFields(LinearLayout layout){
-        boolean flag = false;
+    public int hasEmptyFields(LinearLayout layout){
+        int counter = 0;
         for(int i = 0; i < layout.getChildCount(); i++){
             if(layout.getChildAt(i) instanceof EditText && ((EditText) layout.getChildAt(i)).getText().toString().equals("")){
-                ShapeDrawable shape = new ShapeDrawable(new RectShape());
-                shape.getPaint().setColor(Color.RED);
-                shape.getPaint().setStyle(Paint.Style.STROKE);
-                shape.getPaint().setStrokeWidth(3);
-                ((EditText) layout.getChildAt(i)).setBackground(shape);
-                flag = true;
+                counter ++;
             }
         }
-        return flag;
+        return counter;
     }
 
     public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password, String email, int country, String birthDate, String createDate, String updateDate, String imgurl){
