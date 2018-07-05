@@ -17,6 +17,7 @@
     <string name="showMessageAtention">¡Atención!</string>
     <string name="emptyField">Alguno o todos los campos están vacíos, por favor, ingresa un valor para continuar. \nGracias.</string>
     <string name="emailRegistered">El email ingresado ya esta registrado. \nGracias.</string>
+    <string name="emailFormat">El email ingresado no es correcto, favor de verificarlo. \nGracias.</string>
 
 
     <string-array name="registro_country">

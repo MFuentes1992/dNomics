@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import java.nio.Buffer;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by markf on 24/05/2018.
@@ -95,6 +97,10 @@ public class Functions {
         return v.getContext().getString(R.string.emailRegistered);
     }
 
+    public String emailFormat(View v){
+        return v.getContext().getString(R.string.emailFormat);
+    }
+
     public void showMessage(View v, String title, String message){
         AlertDialog.Builder alert = new AlertDialog.Builder(v.getContext());
         alert.setCancelable(true);
@@ -133,6 +139,15 @@ public class Functions {
         boolean flag = false;
         PersonTO person = model.getPersonByEmail(email);
         flag = person.getPersonID() > 0  ? true : false;
+        return flag;
+    }
+
+    public boolean isEmailFormat(String email){
+        boolean flag = false;
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        flag = matcher.matches();
         return flag;
     }
 

@@ -90,14 +90,18 @@ public class Registro_A extends AppCompatActivity {
                         if(functionHelper.hasEmptyFields(registroAContainer) <= 0){
                             getInfo(); /*Initialize all variables from inputs*/
                             if(!functionHelper.isEmailRegistered(dbModel, email)){
-                                Intent intent = new Intent(Registro_A.this, Registro_B.class);
-                                intent.putExtra("_usuario",usuario);
-                                intent.putExtra("_password",password);
-                                intent.putExtra("_nombre",nombre);
-                                intent.putExtra("_surname",surname);
-                                intent.putExtra("_uniqueid",uniqueID);
-                                intent.putExtra("_email",email);
-                                Registro_A.this.startActivity(intent);
+                                if(functionHelper.isEmailFormat(email)){
+                                    Intent intent = new Intent(Registro_A.this, Registro_B.class);
+                                    intent.putExtra("_usuario",usuario);
+                                    intent.putExtra("_password",password);
+                                    intent.putExtra("_nombre",nombre);
+                                    intent.putExtra("_surname",surname);
+                                    intent.putExtra("_uniqueid",uniqueID);
+                                    intent.putExtra("_email",email);
+                                    Registro_A.this.startActivity(intent);
+                                }else{
+                                    functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emailFormat(v));
+                                }
                             }else{
                                 functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emailRegistered(v));
                             }
