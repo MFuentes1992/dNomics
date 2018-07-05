@@ -106,9 +106,9 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return res;
     }
 
-    public PersonTO getPerson(){
+    public PersonTO getPersonByUserName(String userName){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE personID = 1", null);
+        Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+userName+"'", null);
         PersonTO person = new PersonTO();
         if(res.getCount() > 0){
             res.moveToNext();

@@ -91,14 +91,11 @@ public class Registro_A extends AppCompatActivity {
                             getInfo(); /*Initialize all variables from inputs*/
                             if(!functionHelper.isEmailRegistered(dbModel, email)){
                                 if(functionHelper.isEmailFormat(email)){
-                                    Intent intent = new Intent(Registro_A.this, Registro_B.class);
-                                    intent.putExtra("_usuario",usuario);
-                                    intent.putExtra("_password",password);
-                                    intent.putExtra("_nombre",nombre);
-                                    intent.putExtra("_surname",surname);
-                                    intent.putExtra("_uniqueid",uniqueID);
-                                    intent.putExtra("_email",email);
-                                    Registro_A.this.startActivity(intent);
+                                    if(!functionHelper.isUserRegistered(dbModel, usuario)){
+                                        goToB();
+                                    }else{
+                                        functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.userRegistered(v));
+                                    }
                                 }else{
                                     functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emailFormat(v));
                                 }
@@ -111,6 +108,17 @@ public class Registro_A extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    public void goToB(){
+        Intent intent = new Intent(Registro_A.this, Registro_B.class);
+        intent.putExtra("_usuario",usuario);
+        intent.putExtra("_password",password);
+        intent.putExtra("_nombre",nombre);
+        intent.putExtra("_surname",surname);
+        intent.putExtra("_uniqueid",uniqueID);
+        intent.putExtra("_email",email);
+        Registro_A.this.startActivity(intent);
     }
 
     public void getInfo(){

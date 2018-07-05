@@ -97,6 +97,10 @@ public class Functions {
         return v.getContext().getString(R.string.emailRegistered);
     }
 
+    public String userRegistered(View v){
+        return v.getContext().getString(R.string.userRegistered);
+    }
+
     public String emailFormat(View v){
         return v.getContext().getString(R.string.emailFormat);
     }
@@ -138,6 +142,13 @@ public class Functions {
     public boolean isEmailRegistered(DatabaseModel model, String email){
         boolean flag = false;
         PersonTO person = model.getPersonByEmail(email);
+        flag = person.getPersonID() > 0  ? true : false;
+        return flag;
+    }
+
+    public boolean isUserRegistered(DatabaseModel model, String userName){
+        boolean flag = false;
+        PersonTO person = model.getPersonByUserName(userName);
         flag = person.getPersonID() > 0  ? true : false;
         return flag;
     }
