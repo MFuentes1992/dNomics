@@ -100,7 +100,7 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     public void goToDashboard(){
-        Intent intent = new Intent(Registro_B.this, Registro_B.class);
+        Intent intent = new Intent(Registro_B.this, Dashboard.class);
         intent.putExtra("_usuario",usuario);
         intent.putExtra("_password",password);
         intent.putExtra("_nombre",nombre);
