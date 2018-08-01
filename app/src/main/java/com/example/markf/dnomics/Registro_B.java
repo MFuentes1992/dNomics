@@ -99,6 +99,17 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         alphaCountry = "CO"+spinnerRegistroCountry.getSelectedItemPosition();
     }
 
+    public void goToDashboard(){
+        Intent intent = new Intent(Registro_B.this, Registro_B.class);
+        intent.putExtra("_usuario",usuario);
+        intent.putExtra("_password",password);
+        intent.putExtra("_nombre",nombre);
+        intent.putExtra("_surname",surname);
+        intent.putExtra("_uniqueid",uniqueID);
+        intent.putExtra("_email",email);
+        Registro_B.this.startActivity(intent);
+    }
+
     public void saveData(){
         btnSaveRegistro.setOnClickListener(
                 new View.OnClickListener() {
@@ -108,7 +119,8 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
                         long countryID = dbModel.insertCountry(alphaCountry, country);
                         boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, (int)countryID, getBirthDate(), getCurrentDate(), getCurrentDate(), "img/profile/profile.png"));
                         if(isInserted){
-                            Toast.makeText(Registro_B.this, "Data inserted correctly", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(Registro_B.this, "Data inserted correctly", Toast.LENGTH_LONG).show();
+                            goToDashboard();
                         }else
                         {
                             Toast.makeText(Registro_B.this, "Data Not inserted correctly", Toast.LENGTH_LONG).show();
