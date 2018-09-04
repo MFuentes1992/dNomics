@@ -14,6 +14,14 @@
     <string name="country">&#xf0ac; Pais</string>
     <string name="siguiente">&#xf0a4; Siguiente</string>
     <string name="guardar">&#xf0c7; Guardar</string>
+    <string name="draftico">&#xf01c;</string>
+    <string name="submittedico">&#xf0e0;</string>
+    <string name="ticketico">&#xf1c5;</string>
+    <string name="setingsico">&#xf085;</string>
+    <string name="draft">Draft</string>
+    <string name="submitted">Submitted Reports</string>
+    <string name="ticket">New Report From Ticket</string>
+    <string name="setings">Setings</string>
     <string name="showMessageAtention">¡Atención!</string>
     <string name="emptyField">Alguno o todos los campos están vacíos, por favor, ingresa un valor para continuar. \nGracias.</string>
     <string name="emailRegistered">El email ingresado ya esta registrado, por favor, ingresa otro email para continuar o puedes recuperar tu contraseña desde la pantalla de inicio. \nGracias.</string>

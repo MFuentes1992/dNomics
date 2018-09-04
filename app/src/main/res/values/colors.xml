@@ -17,4 +17,7 @@
 
     <!-- Color for Validator -->
     <color name="emptyFieldValidator">#E91E63</color>
+
+    <!-- Color for the Dashboard backgound -->
+    <color name="lightgray">#eeeeee</color>
 </resources>
