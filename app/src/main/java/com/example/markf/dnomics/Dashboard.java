@@ -22,6 +22,8 @@ public class Dashboard extends AppCompatActivity {
     TextView lblSubmitted;
     TextView lblTicket;
     TextView lblSetings;
+
+    TextView lblUserName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +34,21 @@ public class Dashboard extends AppCompatActivity {
         lblSubmitted = (TextView)findViewById(R.id.lblSubmitted);
         lblTicket = (TextView)findViewById(R.id.lblTicket);
         lblSetings = (TextView)findViewById(R.id.lblSetings);
+        lblUserName = (TextView)findViewById(R.id.lblUserName);
 
         lblDraft.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblSubmitted.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblTicket.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblSetings.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        /*usuario = intent.getStringExtra("_usuario");
+
+        usuario = intent.getStringExtra("_usuario");
         password = intent.getStringExtra("_password");
         nombre = intent.getStringExtra("_nombre");
         surname = intent.getStringExtra("_surname");
         uniqueID = intent.getStringExtra("_uniqueid");
         email = intent.getStringExtra("_email");
-        dbModel =  new DatabaseModel(this);*/
+        dbModel =  new DatabaseModel(this);
+
+        lblUserName.setText(nombre);
     }
 }

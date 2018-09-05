@@ -81,8 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Intent intent = new Intent(MainActivity.this, Registro_A.class);
-                        Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                        Intent intent = new Intent(MainActivity.this, Registro_A.class);
                         intent.putExtra("key","");
                         MainActivity.this.startActivity(intent);
                     }
