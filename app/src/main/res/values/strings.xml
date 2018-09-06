@@ -18,9 +18,10 @@
     <string name="submittedico">&#xf0e0;</string>
     <string name="ticketico">&#xf1c5;</string>
     <string name="setingsico">&#xf085;</string>
+    <string name="editprofile">Editar Perfil</string>
     <string name="draft">Draft</string>
-    <string name="submitted">Submitted Reports</string>
-    <string name="ticket">New Report From Ticket</string>
+    <string name="submitted">Reportes Enviados</string>
+    <string name="ticket">Reporte desde ticket</string>
     <string name="setings">Setings</string>
     <string name="showMessageAtention">¡Atención!</string>
     <string name="emptyField">Alguno o todos los campos están vacíos, por favor, ingresa un valor para continuar. \nGracias.</string>
