@@ -4,11 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.util.Log;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Dashboard extends AppCompatActivity {
+public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     DatabaseModel dbModel;
 
@@ -29,6 +33,8 @@ public class Dashboard extends AppCompatActivity {
     TextView lblUserName;
 
     CircleImageView imageView;
+
+    Spinner doptions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,12 @@ public class Dashboard extends AppCompatActivity {
         lblSetings = (TextView)findViewById(R.id.lblSetings);
         lblUserName = (TextView)findViewById(R.id.lblUserName);
         imageView = (CircleImageView)findViewById(R.id.profile_image);
+        doptions = (Spinner)findViewById(R.id.dashboardOptions);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dashboard_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        doptions.setAdapter(adapter);
+        doptions.setOnItemSelectedListener(this);
 
         lblDraft.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblSubmitted.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
@@ -91,4 +103,31 @@ public class Dashboard extends AppCompatActivity {
         //Do not allow go back when dashboard -- User must close session
     }
 
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id){
+        Log.d("Pos", ""+pos);
+        if(pos == 1)
+            goToEditProfile();
+        else
+            salir();
+    }
+
+    public void onNothingSelected(AdapterView<?> parent){
+
+    }
+
+    public void salir(){
+        dbModel.close();
+
+        alphaCountry = "";
+        country = "";
+        usuario = "";
+        password = "";
+        nombre = "";
+        surname = "";
+        uniqueID = "";
+        email = "";
+
+        Intent intent = new Intent(Dashboard.this, MainActivity.class);
+        Dashboard.this.startActivity(intent);
+    }
 }
