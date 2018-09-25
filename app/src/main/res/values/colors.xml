@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colors for the login theme -->
+    <color name="colorPrimary">#64DD17</color>
+    <color name="colorPrimaryDark">#64DD17</color>
+    <color name="colorControlNormal">#FFF</color>
+    <color name="colorAccent">#FFF</color>
+
+    <!-- Colors for Titles within Action Bars -->
+    <color name="colorTitle">#FFF</color>
+
+    <!-- Colors for all the app that include Action bars -->
+    <color name="colorPrimaryActionBar">#388E3C</color>
+    <color name="colorPrimaryDarkActionBar">#00C853</color>
+    <color name="colorControlNormalActionBar">#00B0FF</color>
+    <color name="colorAccentActionBar">#0091EA</color>
+</resources>

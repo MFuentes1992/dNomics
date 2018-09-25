@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">dNomics</string>
+    <string name="user">&#xf007; Usuario</string>
+    <string name="password">&#xf13e; Password</string>
+    <string name="registro">&#xf2b9; Registro</string>
+    <string name="login">&#xf2f5; Iniciar</string>
+    <string name="title_activity_registro">Registro</string>
+    <string name="no_text"></string>
+    <string name="nombre">&#xf2c2; Nombre</string>
+    <string name="apellido">&#xf47f; Apellido</string>
+    <string name="uniqueid">&#xf084; Unique ID</string>
+    <string name="email">&#xf0e0; Email</string>
+    <string name="birthDate">&#xf073; Fecha nacimiento</string>
+    <string name="siguiente">&#xf0a4; Siguiente</string>
+    <string name="showMessageAtention">¡Atención!</string>
+    <string name="emptyField">Uno de los campos está vacío. Por favor, ingresa un valor admitido para continuar.</string>
+</resources>
