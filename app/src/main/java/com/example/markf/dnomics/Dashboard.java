@@ -107,7 +107,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         Log.d("Pos", ""+pos);
         if(pos == 1)
             goToEditProfile();
-        else
+        else if(pos == 2)
             salir();
     }
 
