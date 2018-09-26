@@ -1,6 +1,9 @@
 package com.example.markf.dnomics;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -107,8 +110,31 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         Log.d("Pos", ""+pos);
         if(pos == 1)
             goToEditProfile();
-        else if(pos == 2)
-            salir();
+        else if(pos == 2){
+            AlertDialog.Builder builder;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder = new AlertDialog.Builder(this, android.R.style.Theme_Material_Dialog_Alert);
+            } else {
+                builder = new AlertDialog.Builder(this);
+            }
+            builder.setTitle("Sing Out")
+                    .setMessage("Are you sure you want to sing out?")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                            salir();
+                        }
+                    })
+                    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                            doptions.setSelection(0);
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+
     }
 
     public void onNothingSelected(AdapterView<?> parent){
