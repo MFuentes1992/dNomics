@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.markf.dnomics.NewReport">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimaryDarkActionBar">
+
+                <TextView
+                    android:id="@+id/ReportHeaderActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:text="@string/newreport"
+                    android:textColor="@color/colorTitle"
+                    android:textSize="@dimen/action_title" />
+            </android.support.design.widget.AppBarLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ReportHeaderContainer"
+            android:layout_width="match_parent"
+            android:layout_height="547dp"
+            android:layout_marginLeft="50px"
+            android:layout_marginRight="50px"
+            android:layout_marginTop="50px"
+            android:orientation="vertical"
+            android:theme="@style/ActionBar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/newreport"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lblReportName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30px"
+                android:text="@string/reportname" />
+
+            <EditText
+                android:id="@+id/txtReportName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="50"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="@string/no_text" />
+
+            <TextView
+                android:id="@+id/lblReportDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30px"
+                android:text="@string/date" />
+
+            <DatePicker
+                android:id="@+id/ReportDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:datePickerMode="spinner"
+                android:calendarViewShown="false"
+                />
+
+            <TextView
+                android:id="@+id/lblLocation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/location" />
+
+            <Spinner
+                android:id="@+id/spinnerLocation"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:layout_height="50dp"></Spinner>
+
+            <Button
+                android:id="@+id/btnGoToLineItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorControlNormalActionBar"
+                android:text="@string/guardar"
+                android:textColor="@color/colorControlNormal" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

@@ -19,6 +19,10 @@
     <string name="ticketico">&#xf1c5;</string>
     <string name="setingsico">&#xf085;</string>
     <string name="editprofile">Editar Perfil</string>
+    <string name="newreport">Nuevo Reporte</string>
+    <string name="reportname">&#xf15b; Nombre del Reporte</string>
+    <string name="date">&#xf133; Fecha</string>
+    <string name="location">&#xf3c5; Lugar</string>
     <string name="draft">Draft</string>
     <string name="submitted">Reportes Enviados</string>
     <string name="ticket">Reporte desde ticket</string>

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,8 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     CircleImageView imageView;
 
     Spinner doptions;
+
+    FloatingActionButton fabNewReport;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         lblUserName = (TextView)findViewById(R.id.lblUserName);
         imageView = (CircleImageView)findViewById(R.id.profile_image);
         doptions = (Spinner)findViewById(R.id.dashboardOptions);
+        fabNewReport = findViewById(R.id.fabNewReport);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dashboard_options, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -73,6 +77,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         lblUserName.setText(nombre);
 
         editProfile();
+        newReport();
     }
 
     private void goToEditProfile(){
@@ -81,6 +86,12 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         intent.putExtra("_password", password);
         intent.putExtra("_nombre", nombre);
         intent.putExtra("_surname", surname);
+        intent.putExtra("_uniqueid", uniqueID);
+        Dashboard.this.startActivity(intent);
+    }
+
+    private void goToNewReport(){
+        Intent intent = new Intent(Dashboard.this, NewReport.class);
         intent.putExtra("_uniqueid", uniqueID);
         Dashboard.this.startActivity(intent);
     }
@@ -97,6 +108,15 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
             @Override
             public void onClick(View v) {
                 goToEditProfile();
+            }
+        });
+    }
+
+    public void newReport(){
+        fabNewReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToNewReport();
             }
         });
     }
