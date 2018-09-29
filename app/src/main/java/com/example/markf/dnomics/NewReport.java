@@ -1,5 +1,6 @@
 package com.example.markf.dnomics;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,8 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
 
         location.setAdapter(adapter);
         location.setOnItemSelectedListener(NewReport.this);
+
+        saveReport();
     }
 
     @Override
@@ -51,5 +54,19 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         //TODO
+    }
+
+    private void saveReport(){
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToLineItem();
+            }
+        });
+    }
+
+    private void goToLineItem(){
+        Intent intent = new Intent(NewReport.this, LineItem.class);
+        NewReport.this.startActivity(intent);
     }
 }
