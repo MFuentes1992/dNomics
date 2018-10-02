@@ -26,9 +26,9 @@
     <string name="lineitemdescription">&#xf044; Descripción</string>
     <string name="lineitemfrom">&#xf1b9; Desde</string>
     <string name="lineitemto">&#xf1b9; Hasta</string>
-    <string name="lineitemmerchant">&#xf568; Marca/Vendedor</string>
+    <string name="lineitemmerchant">&#xf07a; Marca/Vendedor</string>
     <string name="lineitemallocation">&#xf09d; Cuenta</string>
-    <string name="lineitemattach">&#xf0c6;</string>
+    <string name="lineitemattach">&#xf0c6; Ticket</string>
     <string name="reportname">&#xf15b; Nombre del Reporte</string>
     <string name="date">&#xf133; Fecha</string>
     <string name="location">&#xf3c5; Lugar</string>

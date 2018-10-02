@@ -19,7 +19,7 @@
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDarkActionBar">
+                android:background="@color/colorFrogGreen">
 
                 <TextView
                     android:id="@+id/LineItemActivity"
@@ -27,10 +27,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:paddingLeft="30px"
+                    android:paddingLeft="@dimen/action_title_padding_left"
                     android:text="@string/lineitem"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="@dimen/action_title" />
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/action_title_size" />
             </android.support.design.widget.AppBarLayout>
         </LinearLayout>
 
@@ -38,9 +38,9 @@
             android:id="@+id/LineItemContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="5dp"
+            android:paddingLeft="@dimen/data_screen_padding_left"
+            android:paddingRight="@dimen/data_screen_padding_right"
+            android:paddingTop="@dimen/data_screen_padding_top"
             android:orientation="vertical"
             android:theme="@style/ActionBar">
 
@@ -49,9 +49,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center">
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/lineitem2"
+                    android:layout_width="@dimen/data_screen_icon_size"
+                    android:layout_height="@dimen/data_screen_icon_size"
+                    android:src="@drawable/lineitem"
                     />
             </LinearLayout>
 
@@ -60,7 +60,7 @@
                 android:id="@+id/lblLineItemDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/lineitemdate" />
 
             <DatePicker
@@ -75,7 +75,7 @@
                 android:id="@+id/lblLineItemAmt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/lineitemamt" />
 
             <EditText
@@ -90,7 +90,7 @@
                 android:id="@+id/lblLineItemDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/lineitemdescription" />
 
             <EditText
@@ -105,7 +105,7 @@
                 android:id="@+id/lblLineItemFrom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/lineitemfrom" />
 
             <EditText
@@ -120,7 +120,7 @@
                 android:id="@+id/lblLineItemTo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/lineitemto" />
 
             <EditText
@@ -135,7 +135,7 @@
                 android:id="@+id/lblLineItemMerchant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/lineitemmerchant" />
 
             <EditText
@@ -150,7 +150,7 @@
                 android:id="@+id/lblLineItemAllocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/lineitemallocation" />
 
             <EditText
@@ -163,20 +163,20 @@
 
             <Button
                 android:id="@+id/btnAttachTicket"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:backgroundTint="@color/colorPrimaryDarkActionBar"
+                android:backgroundTint="@color/colorFrogGreen"
                 android:text="@string/lineitemattach"
-                android:textColor="@color/colorControlNormal" />
+                android:textColor="@color/colorWhite" />
 
             <Button
                 android:id="@+id/btnSaveLineItem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorControlNormalActionBar"
+                android:backgroundTint="@color/colorBlue"
                 android:text="@string/guardar"
-                android:textColor="@color/colorControlNormal" />
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
 
     </LinearLayout>

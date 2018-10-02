@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -18,13 +18,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:background="@drawable/ng4"
+                android:background="@drawable/bgdashboard"
                 android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/profile_image"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="@dimen/dashboard_screen_circle_image"
+                    android:layout_height="@dimen/dashboard_screen_circle_image"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="35dp"
                     android:src="@drawable/user"
@@ -44,7 +44,7 @@
             </LinearLayout>
 
             <android.support.v7.widget.CardView
-                android:layout_width="400dp"
+                android:layout_width="350dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="275dp">
@@ -74,7 +74,7 @@
                             android:paddingTop="10dp"
                             android:id="@+id/lblDraftNumber"
                             android:text="0"
-                            android:textColor="@color/colorAccentActionBar"
+                            android:textColor="@color/colorDarkBlue"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -98,7 +98,7 @@
                             android:paddingTop="10dp"
                             android:id="@+id/lblSubmittedNumber"
                             android:text="0"
-                            android:textColor="@color/colorAccentActionBar"
+                            android:textColor="@color/colorDarkBlue"
                             android:textSize="20sp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -123,7 +123,7 @@
                     android:id="@+id/lblDraft"
                     android:text="@string/draftico"
                     android:textSize="25dp"
-                    android:textColor="@color/colorAccentActionBar"/>
+                    android:textColor="@color/colorDarkBlue"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,7 +143,7 @@
                     android:id="@+id/lblSubmitted"
                     android:text="@string/submittedico"
                     android:textSize="25dp"
-                    android:textColor="@color/colorAccentActionBar"/>
+                    android:textColor="@color/colorDarkBlue"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
                     android:id="@+id/lblTicket"
                     android:text="@string/ticketico"
                     android:textSize="25dp"
-                    android:textColor="@color/colorAccentActionBar"/>
+                    android:textColor="@color/colorDarkBlue"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -183,7 +183,7 @@
                     android:id="@+id/lblSetings"
                     android:text="@string/setingsico"
                     android:textSize="25dp"
-                    android:textColor="@color/colorAccentActionBar"/>
+                    android:textColor="@color/colorDarkBlue"/>
                 <android.support.v7.widget.AppCompatSpinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,7 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            app:backgroundTint="@color/colorPrimaryDarkActionBar"
+            app:backgroundTint="@color/colorFrogGreen"
             android:src="@drawable/plus"
             android:layout_margin="16dp" />
 

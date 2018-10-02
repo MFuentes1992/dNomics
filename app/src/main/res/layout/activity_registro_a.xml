@@ -18,7 +18,7 @@
             <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDarkActionBar">
+                android:background="@color/colorFrogGreen">
 
                 <TextView
                     android:id="@+id/activityTitle"
@@ -28,18 +28,18 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="30px"
                     android:text="@string/title_activity_registro"
-                    android:textColor="@color/colorTitle"
-                    android:textSize="@dimen/action_title" />
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/action_title_size" />
             </android.support.design.widget.AppBarLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/registroAContainer"
             android:layout_width="match_parent"
-            android:layout_height="547dp"
-            android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
-            android:layout_marginTop="50px"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/data_screen_padding_left"
+            android:paddingRight="@dimen/data_screen_padding_right"
+            android:paddingTop="@dimen/data_screen_padding_top"
             android:orientation="vertical"
             android:theme="@style/ActionBar">
 
@@ -62,7 +62,7 @@
                 android:id="@+id/lblPasswordRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/password" />
 
             <EditText
@@ -77,7 +77,7 @@
                 android:id="@+id/lblNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/nombre" />
 
             <EditText
@@ -93,7 +93,7 @@
                 android:id="@+id/lblSurname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/apellido" />
 
             <EditText
@@ -109,7 +109,7 @@
                 android:id="@+id/lblUniqueID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/uniqueid" />
 
             <EditText
@@ -125,7 +125,7 @@
                 android:id="@+id/lblEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="30px"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
                 android:text="@string/email" />
 
             <EditText
@@ -140,9 +140,9 @@
                 android:id="@+id/btnNextRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorControlNormalActionBar"
+                android:backgroundTint="@color/colorBlue"
                 android:text="@string/siguiente"
-                android:textColor="@color/colorControlNormal" />
+                android:textColor="@color/colorWhite" />
         </LinearLayout>
 
     </LinearLayout>

@@ -17,6 +17,7 @@ public class LineItem extends AppCompatActivity {
     TextView lblLineItemAllocation;
 
     Button btnAttachTicket;
+    Button btnSaveLineItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class LineItem extends AppCompatActivity {
         lblLineItemAllocation = (TextView)findViewById(R.id.lblLineItemAllocation);
         lblLineItemFrom = (TextView)findViewById(R.id.lblLineItemFrom);
         btnAttachTicket = (Button)findViewById(R.id.btnAttachTicket);
+        btnSaveLineItem = (Button)findViewById(R.id.btnSaveLineItem);
 
         lblLineItemDate.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblLineItemAmt.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
@@ -40,5 +42,6 @@ public class LineItem extends AppCompatActivity {
         lblLineItemAllocation.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblLineItemFrom.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         btnAttachTicket.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
+        btnSaveLineItem.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
     }
 }

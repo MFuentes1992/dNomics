@@ -1,23 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Colors for the login theme -->
-    <color name="colorPrimary">#64DD17</color>
-    <color name="colorPrimaryDark">#64DD17</color>
-    <color name="colorControlNormal">#FFF</color>
-    <color name="colorAccent">#FFF</color>
-
-    <!-- Colors for Titles within Action Bars -->
-    <color name="colorTitle">#FFF</color>
-
+    <color name="colorLime">#64DD17</color>
+    <color name="colorWhite">#FFF</color>
     <!-- Colors for all the app that include Action bars -->
-    <color name="colorPrimaryActionBar">#388E3C</color>
-    <color name="colorPrimaryDarkActionBar">#00C853</color>
-    <color name="colorControlNormalActionBar">#00B0FF</color>
-    <color name="colorAccentActionBar">#0091EA</color>
-
+    <color name="colorDarkGreen">#388E3C</color>
+    <color name="colorFrogGreen">#00C853</color>
+    <color name="colorBlue">#00B0FF</color>
+    <color name="colorDarkBlue">#0091EA</color>
     <!-- Color for Validator -->
-    <color name="emptyFieldValidator">#E91E63</color>
-
+    <color name="colorRed">#E91E63</color>
     <!-- Color for the Dashboard backgound -->
-    <color name="lightgray">#eeeeee</color>
+    <color name="colorLightGray">#eeeeee</color>
 </resources>
