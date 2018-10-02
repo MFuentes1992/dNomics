@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
     tools:context="com.example.markf.dnomics.LineItem">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,10 +37,10 @@
         <LinearLayout
             android:id="@+id/LineItemContainer"
             android:layout_width="match_parent"
-            android:layout_height="547dp"
-            android:layout_marginLeft="50px"
-            android:layout_marginRight="50px"
-            android:layout_marginTop="50px"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="5dp"
             android:orientation="vertical"
             android:theme="@style/ActionBar">
 
@@ -50,24 +51,10 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/lineitem"
+                    android:src="@drawable/lineitem2"
                     />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/lblLineItemAmt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="30px"
-                android:text="@string/lineitemamt" />
-
-            <EditText
-                android:id="@+id/txtLineItemAmt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="50"
-                android:ems="10"
-                android:text="@string/no_text" />
 
             <TextView
                 android:id="@+id/lblLineItemDate"
@@ -83,6 +70,21 @@
                 android:datePickerMode="spinner"
                 android:calendarViewShown="false"
                 />
+
+            <TextView
+                android:id="@+id/lblLineItemAmt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30px"
+                android:text="@string/lineitemamt" />
+
+            <EditText
+                android:id="@+id/txtLineItemAmt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="50"
+                android:ems="10"
+                android:text="@string/no_text" />
 
             <TextView
                 android:id="@+id/lblLineItemDescription"
