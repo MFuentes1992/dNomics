@@ -49,8 +49,7 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         uniqueID = intent.getStringExtra("_uniqueid");
         email = intent.getStringExtra("_email");
         dbModel =  new DatabaseModel(this);
-
-        //titleActivity = (TextView)findViewById(R.id.activityTitleRegistroB);
+        
         lblbirthDate = (TextView)findViewById(R.id.lblBirthDate);
         lblCountry = (TextView)findViewById(R.id.lblCountry);
         btnSaveRegistro = (Button)findViewById(R.id.btnSaveRegistro);
@@ -61,7 +60,6 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         btnSaveRegistro.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblbirthDate.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblCountry.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        titleActivity.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.RIGHTEOUS));
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.registro_country, R.layout.support_simple_spinner_dropdown_item);
         spinnerRegistroCountry.setAdapter(adapter);

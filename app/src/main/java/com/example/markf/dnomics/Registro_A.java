@@ -55,7 +55,6 @@ public class Registro_A extends AppCompatActivity {
         lblSurname = (TextView)findViewById(R.id.lblSurname);
         lbluniqueID = (TextView)findViewById(R.id.lblUniqueID);
         lblEmail = (TextView)findViewById(R.id.lblEmail);
-        //titleActivity = (TextView)findViewById(R.id.activityTitle);
         btnNextTRegistro = (Button) findViewById(R.id.btnNextRegistro);
 
         txtUsuarioRegistro = (EditText) findViewById(R.id.txtUsuarioRegistro);
@@ -72,7 +71,6 @@ public class Registro_A extends AppCompatActivity {
         lblSurname.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lbluniqueID.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblEmail.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        titleActivity.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.RIGHTEOUS));
         lblUsuario.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         btnNextTRegistro.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 

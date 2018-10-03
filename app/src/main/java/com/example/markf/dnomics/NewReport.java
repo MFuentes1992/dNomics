@@ -28,14 +28,12 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
         lblReportName = (TextView)findViewById(R.id.lblReportName);
         lblDate = (TextView)findViewById(R.id.lblReportDate);
         lblLocation = (TextView)findViewById(R.id.lblLocation);
-        //lblNewReport = (TextView)findViewById(R.id.ReportHeaderActivity);
         btnSave = (Button)findViewById(R.id.btnGoToLineItem);
         location = (Spinner)findViewById(R.id.spinnerLocation);
 
         lblReportName.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblDate.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblLocation.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        //lblNewReport.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         btnSave.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.registro_country, R.layout.support_simple_spinner_dropdown_item);
