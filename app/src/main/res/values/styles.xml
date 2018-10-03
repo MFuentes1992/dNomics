@@ -17,4 +17,12 @@
         <item name="colorControlNormal">@color/colorBlue</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <style name="Dashboard" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorFrogGreen</item>
+        <item name="colorPrimaryDark">@color/colorDarkGreen</item>
+        <item name="colorAccent">@color/colorDarkBlue</item>
+        <item name="colorControlNormal">@color/colorBlue</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

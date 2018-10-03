@@ -19,12 +19,27 @@
         <activity
             android:name=".Registro_A"
             android:label="@string/title_activity_registro"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".Registro_B" />
-        <activity android:name=".Dashboard" />
-        <activity android:name=".EditProfile" />
-        <activity android:name=".NewReport" />
-        <activity android:name=".LineItem"></activity>
+            android:theme="@style/ActionBar" />
+        <activity
+            android:name=".Registro_B"
+            android:label="@string/title_activity_registro"
+            android:theme="@style/ActionBar"/>
+        <activity
+            android:name=".Dashboard"
+            android:label="@string/Dashboard"
+            android:theme="@style/Dashboard"/>
+        <activity
+            android:name=".EditProfile"
+            android:label="@string/editprofile"
+            android:theme="@style/ActionBar"/>
+        <activity
+            android:name=".NewReport"
+            android:label="@string/newreport"
+            android:theme="@style/ActionBar"/>
+        <activity
+            android:name=".LineItem"
+            android:label="@string/lineitem"
+            android:theme="@style/ActionBar"></activity>
     </application>
 
 </manifest>

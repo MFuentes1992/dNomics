@@ -56,8 +56,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         doptions = (Spinner)findViewById(R.id.dashboardOptions);
         fabNewReport = findViewById(R.id.fabNewReport);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dashboard_options, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dashboard_options, R.layout.support_simple_spinner_dropdown_item);
         doptions.setAdapter(adapter);
         doptions.setOnItemSelectedListener(this);
 

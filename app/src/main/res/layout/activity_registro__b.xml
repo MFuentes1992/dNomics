@@ -16,7 +16,7 @@
             android:layout_height="@dimen/action_bar"
             android:orientation="vertical">
 
-            <android.support.design.widget.AppBarLayout
+            <!--<android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/colorFrogGreen">
@@ -31,7 +31,7 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/action_title_size"
                     android:text="@string/title_activity_registro" />
-            </android.support.design.widget.AppBarLayout>
+            </android.support.design.widget.AppBarLayout>-->
         </LinearLayout>
 
         <LinearLayout

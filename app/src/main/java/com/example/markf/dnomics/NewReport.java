@@ -28,7 +28,7 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
         lblReportName = (TextView)findViewById(R.id.lblReportName);
         lblDate = (TextView)findViewById(R.id.lblReportDate);
         lblLocation = (TextView)findViewById(R.id.lblLocation);
-        lblNewReport = (TextView)findViewById(R.id.ReportHeaderActivity);
+        //lblNewReport = (TextView)findViewById(R.id.ReportHeaderActivity);
         btnSave = (Button)findViewById(R.id.btnGoToLineItem);
         location = (Spinner)findViewById(R.id.spinnerLocation);
 

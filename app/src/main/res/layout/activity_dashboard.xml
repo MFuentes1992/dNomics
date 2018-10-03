@@ -13,11 +13,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="405dp">
+            android:layout_height="@dimen/dashboard_screen_header_layout_height">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="@dimen/dashboard_screen_layout_height"
                 android:background="@drawable/bgdashboard"
                 android:orientation="vertical">
 
@@ -29,7 +29,7 @@
                     android:layout_marginTop="35dp"
                     android:src="@drawable/user"
                     app:civ_border_color="@android:color/white"
-                    app:civ_border_width="2dp" />
+                    app:civ_border_width="@dimen/dashboard_screen_circle_image_border" />
 
                 <TextView
                     android:id="@+id/lblUserName"
@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="Marco Fuentes"
+                    android:text=""
                     android:textColor="@android:color/white"
                     android:textSize="21sp"
                     android:textStyle="bold" />
@@ -184,14 +184,14 @@
                     android:text="@string/setingsico"
                     android:textSize="25dp"
                     android:textColor="@color/colorDarkBlue"/>
-                <android.support.v7.widget.AppCompatSpinner
+                <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:textSize="15dp"
                     android:id="@+id/dashboardOptions">
 
-                </android.support.v7.widget.AppCompatSpinner>
+                </Spinner>
 
             </LinearLayout>
         </LinearLayout>

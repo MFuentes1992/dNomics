@@ -50,7 +50,7 @@
                 <ImageView
                     android:layout_width="@dimen/data_screen_icon_size"
                     android:layout_height="@dimen/data_screen_icon_size"
-                    android:src="@drawable/camera1"
+                    android:src="@drawable/camera"
                     />
             </LinearLayout>
 

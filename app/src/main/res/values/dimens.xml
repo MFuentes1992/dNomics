@@ -3,11 +3,14 @@
     <dimen name="action_bar">50dp</dimen>
     <dimen name="action_title_padding_left">10dp</dimen>
     <dimen name="action_title_size">20dp</dimen>
-    <dimen name="data_screen_padding_top">5dp</dimen>
+    <dimen name="data_screen_padding_top">10dp</dimen>
     <dimen name="data_screen_padding_left">20dp</dimen>
     <dimen name="data_screen_padding_right">20dp</dimen>
     <dimen name="data_screen_control_padding_top">20dp</dimen>
     <dimen name="data_screen_icon_size">100dp</dimen>
     <dimen name="dashboard_screen_circle_image">150dp</dimen>
     <dimen name="dashboard_screen_circle_image_margin_top">150dp</dimen>
+    <dimen name="dashboard_screen_circle_image_border">2dp</dimen>
+    <dimen name="dashboard_screen_header_layout_height">405dp</dimen>
+    <dimen name="dashboard_screen_layout_height">350dp</dimen>
 </resources>

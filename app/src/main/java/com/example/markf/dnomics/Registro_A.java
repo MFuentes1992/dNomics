@@ -55,7 +55,7 @@ public class Registro_A extends AppCompatActivity {
         lblSurname = (TextView)findViewById(R.id.lblSurname);
         lbluniqueID = (TextView)findViewById(R.id.lblUniqueID);
         lblEmail = (TextView)findViewById(R.id.lblEmail);
-        titleActivity = (TextView)findViewById(R.id.activityTitle);
+        //titleActivity = (TextView)findViewById(R.id.activityTitle);
         btnNextTRegistro = (Button) findViewById(R.id.btnNextRegistro);
 
         txtUsuarioRegistro = (EditText) findViewById(R.id.txtUsuarioRegistro);
