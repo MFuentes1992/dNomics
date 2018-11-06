@@ -47,12 +47,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center">
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/selectPicture"
                     android:layout_width="@dimen/data_screen_icon_size"
                     android:layout_height="@dimen/data_screen_icon_size"
-                    android:id="@+id/selectPicture"
                     android:src="@drawable/camera"
-                    />
+                    app:civ_border_color="@android:color/white"
+                    app:civ_border_width="@dimen/dashboard_screen_circle_image_border" />
             </LinearLayout>
 
             <TextView
