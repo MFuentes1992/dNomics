@@ -81,6 +81,9 @@ public class EditProfile extends AppCompatActivity {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Log.d(TAG, String.valueOf(bitmap));
                 selectPicture.setImageBitmap(bitmap);
+                selectPicture.getLayoutParams().height = 300;
+                selectPicture.getLayoutParams().width = 300;
+                selectPicture.requestLayout();
             } catch (IOException e) {
                 e.printStackTrace();
             }
