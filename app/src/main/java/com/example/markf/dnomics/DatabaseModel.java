@@ -25,7 +25,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String strQueryCountry = "CREATE TABLE country (country_alphaID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, country_alpha TEXT NOT NULL, name TEXT NOT NULL);";
 
-        String strQueryPerson = "CREATE TABLE person (personID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, surname TEXT NOT NULL, uniqueID TEXT NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL, country_alphaID INTEGER NOT NULL, birth_date TEXT NOT NULL, create_date TEXT NOT NULL, update_date TEXT NOT NULL, img_url TEXT NOT NULL, estatus INTEGER NOT NULL);";
+        String strQueryPerson = "CREATE TABLE person (personID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, surname TEXT NOT NULL, uniqueID TEXT NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL, country_alphaID INTEGER NOT NULL, birth_date TEXT NOT NULL, create_date TEXT NOT NULL, update_date TEXT NOT NULL, img_data BLOB, estatus INTEGER NOT NULL);";
 
         db.execSQL(strQueryCountry);
         db.execSQL(strQueryPerson);
@@ -98,7 +98,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         contentValue.put("country_alphaID", person.getCountry_alphaID());
         contentValue.put("birth_date", person.getBirthDate().toString());
         contentValue.put("create_date", person.getCreateDate().toString());
-        contentValue.put("img_url", person.getImgUrl());
+        contentValue.put("img_data", person.getImgData());
         contentValue.put("update_date", person.getUpdateDate().toString());
         contentValue.put("estatus", person.getEstatusID());
         long _res = db.insert(tableName, null, contentValue);
@@ -123,7 +123,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setBirthDate(res.getString(8));
             person.setCreateDate(res.getString(9));
             person.setUpdateDate(res.getString(10));
-            person.setImgUrl(res.getString(11));
+            person.setImgData(res.getBlob(11));
             person.setEstatusID(Integer.parseInt(res.getString(12)));
         }
         return person;
@@ -146,7 +146,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setBirthDate(res.getString(8));
             person.setCreateDate(res.getString(9));
             person.setUpdateDate(res.getString(10));
-            person.setImgUrl(res.getString(11));
+            person.setImgData(res.getBlob(11));
             person.setEstatusID(Integer.parseInt(res.getString(12)));
         }
         return person;
@@ -169,7 +169,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setBirthDate(res.getString(8));
             person.setCreateDate(res.getString(9));
             person.setUpdateDate(res.getString(10));
-            person.setImgUrl(res.getString(11));
+            person.setImgData(res.getBlob(11));
             person.setEstatusID(Integer.parseInt(res.getString(12)));
             personArray.add(person);
         }

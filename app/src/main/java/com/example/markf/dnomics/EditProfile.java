@@ -77,8 +77,13 @@ public class EditProfile extends AppCompatActivity {
 
             Uri uri = data.getData();
 
+            //Call the ImageHandler in order to convert the image to bytes and save it into the DB
+            ImageHandler imageMgr = new ImageHandler();
+
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                //Convert Bitmap to byte array
+                imageMgr.setImageDataFromBitmap(bitmap);
                 // Log.d(TAG, String.valueOf(bitmap));
                 selectPicture.setImageBitmap(bitmap);
                 selectPicture.getLayoutParams().height = 300;

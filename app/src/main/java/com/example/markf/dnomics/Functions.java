@@ -38,7 +38,7 @@ public class Functions {
         buffer.append("BirthDate:"+person.getBirthDate()+"\n");
         buffer.append("Create Date:"+person.getCreateDate()+"\n");
         buffer.append("Update Date:"+person.getUpdateDate()+"\n");
-        buffer.append("Img_url:"+person.getImgUrl()+"\n");
+        buffer.append("Img_data:"+person.getImgData()+"\n");
         buffer.append("Estatus:"+person.getEstatusID()+"\n");
         return buffer.toString();
     }
@@ -57,7 +57,7 @@ public class Functions {
             buffer.append("BirthDate:"+persons.get(i).getBirthDate()+"\n");
             buffer.append("Create Date:"+persons.get(i).getCreateDate()+"\n");
             buffer.append("Update Date:"+persons.get(i).getUpdateDate()+"\n");
-            buffer.append("Img_url:"+persons.get(i).getImgUrl()+"\n");
+            buffer.append("Img_data:"+persons.get(i).getImgData()+"\n");
             buffer.append("Estatus:"+persons.get(i).getEstatusID()+"\n");
             buffer.append("\n");
         }
@@ -123,7 +123,7 @@ public class Functions {
         return counter;
     }
 
-    public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password, String email, int country, String birthDate, String createDate, String updateDate, String imgurl){
+    public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password, String email, int country, String birthDate, String createDate, String updateDate, byte[] imgurl){
         PersonTO person = new PersonTO();
         person.setName(nombre);
         person.setSurName(surname);
@@ -134,7 +134,7 @@ public class Functions {
         person.setCountry_alphaID(country);
         person.setBirthDate(birthDate);
         person.setCreateDate(createDate);
-        person.setImgUrl(imgurl);
+        person.setImgData(imgurl);
         person.setUpdateDate(updateDate);
         return person;
     }

@@ -25,7 +25,7 @@ public class PersonTO {
     private String userName;
     private String password;
     private String email ;
-    private String imgUrl;
+    private byte[] imgData;
 
     public PersonTO(){
 
@@ -41,7 +41,7 @@ public class PersonTO {
 
         name = "";
         email = "";
-        imgUrl = "";
+        imgData = null;
         surName = "";
         uniqueID = "";
         userName = "";
@@ -160,11 +160,11 @@ public class PersonTO {
         this.email = email;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public byte[] getImgData() {
+        return imgData;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImgData(byte[] imgData) {
+        this.imgData = imgData;
     }
 }

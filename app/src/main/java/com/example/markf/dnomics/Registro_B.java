@@ -1,6 +1,8 @@
 package com.example.markf.dnomics;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -115,7 +117,15 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
                     public void onClick(View v) {
                         Functions helper = new Functions();
                         long countryID = dbModel.insertCountry(alphaCountry, country);
-                        boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, (int)countryID, getBirthDate(), getCurrentDate(), getCurrentDate(), "img/profile/profile.png"));
+
+                        //Storing a fake image into the image data field in the person's record - all users must have an initial value
+                        Bitmap fakeImg = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.alisa);
+                        //Call ImageHandler
+                        ImageHandler imageMgr = new ImageHandler();
+                        //Convert bitmap into byte array
+                        imageMgr.setImageDataFromBitmap(fakeImg);
+
+                        boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, (int)countryID, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
                         if(isInserted){
                             //Toast.makeText(Registro_B.this, "Data inserted correctly", Toast.LENGTH_LONG).show();
                             goToDashboard();

@@ -56,6 +56,9 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         doptions = (Spinner)findViewById(R.id.dashboardOptions);
         fabNewReport = findViewById(R.id.fabNewReport);
 
+        //Call for the ImageHandler
+        ImageHandler imgMgr = new ImageHandler();
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dashboard_options, R.layout.support_simple_spinner_dropdown_item);
         doptions.setAdapter(adapter);
         doptions.setOnItemSelectedListener(this);
