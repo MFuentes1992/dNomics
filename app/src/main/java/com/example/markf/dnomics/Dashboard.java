@@ -18,7 +18,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+    // Objects and variables for getting user's db info
     DatabaseModel dbModel;
+    PersonTO activeSession = null;
+    Functions functionsHelper;
 
     String alphaCountry;
     String country;
@@ -47,6 +50,25 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         setContentView(R.layout.activity_dashboard);
         Intent intent = getIntent();
 
+        //Get user's info through the activity intent, when came from new entry
+
+        usuario = intent.getStringExtra("_usuario");
+        password = intent.getStringExtra("_password");
+        nombre = intent.getStringExtra("_nombre");
+        surname = intent.getStringExtra("_surname");
+        uniqueID = intent.getStringExtra("_uniqueid");
+        email = intent.getStringExtra("_email");
+
+        dbModel =  new DatabaseModel(this);
+        //get the active session of the current user
+        activeSession = getUserSession(usuario, password);
+        //if the active session is equals null (does not exits) then close all the operation
+        if(activeSession == null){
+            salir();
+        }
+
+        functionsHelper = new Functions();
+
         lblDraft = (TextView)findViewById(R.id.lblDraft);
         lblSubmitted = (TextView)findViewById(R.id.lblSubmitted);
         lblTicket = (TextView)findViewById(R.id.lblTicket);
@@ -68,15 +90,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         lblTicket.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblSetings.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
-        usuario = intent.getStringExtra("_usuario");
-        password = intent.getStringExtra("_password");
-        nombre = intent.getStringExtra("_nombre");
-        surname = intent.getStringExtra("_surname");
-        uniqueID = intent.getStringExtra("_uniqueid");
-        email = intent.getStringExtra("_email");
-        dbModel =  new DatabaseModel(this);
-
-        lblUserName.setText(nombre);
+        lblUserName.setText(activeSession.getName()+" "+activeSession.getSurName().substring(0,1)+".");
 
         editProfile();
         newReport();
@@ -161,6 +175,12 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
     public void onNothingSelected(AdapterView<?> parent){
 
+    }
+
+    public PersonTO getUserSession(String userName, String pass){
+        PersonTO person = new PersonTO();
+        person = dbModel.getPersonByUserNamePass(userName,pass);
+        return person;
     }
 
     public void salir(){

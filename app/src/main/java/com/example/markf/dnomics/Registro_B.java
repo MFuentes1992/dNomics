@@ -3,6 +3,7 @@ package com.example.markf.dnomics;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +41,8 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
     String uniqueID;
     String email;
 
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,7 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         lblCountry = (TextView)findViewById(R.id.lblCountry);
         btnSaveRegistro = (Button)findViewById(R.id.btnSaveRegistro);
         sBirthDate = (DatePicker)findViewById(R.id.birthDate);
+        progressBar = (ProgressBar)findViewById(R.id.indeterminateBar);
 
         spinnerRegistroCountry = (Spinner)findViewById(R.id.spinnerRegistroCountry);
 
@@ -115,25 +120,31 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Functions helper = new Functions();
-                        long countryID = dbModel.insertCountry(alphaCountry, country);
+                        progressBar.setVisibility(View.VISIBLE);
 
-                        //Storing a fake image into the image data field in the person's record - all users must have an initial value
-                        Bitmap fakeImg = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.alisa);
-                        //Call ImageHandler
-                        ImageHandler imageMgr = new ImageHandler();
-                        //Convert bitmap into byte array
-                        imageMgr.setImageDataFromBitmap(fakeImg);
+                        new Handler().post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Functions helper = new Functions();
+                                long countryID = dbModel.insertCountry(alphaCountry, country);
 
-                        boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, (int)countryID, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
-                        if(isInserted){
-                            //Toast.makeText(Registro_B.this, "Data inserted correctly", Toast.LENGTH_LONG).show();
-                            goToDashboard();
-                        }else
-                        {
-                            Toast.makeText(Registro_B.this, "Data Not inserted correctly", Toast.LENGTH_LONG).show();
-                        }
+                                //Storing a fake image into the image data field in the person's record - all users must have an initial value
+                                Bitmap fakeImg = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.alisa);
+                                //Call ImageHandler
+                                ImageHandler imageMgr = new ImageHandler();
+                                //Convert bitmap into byte array
+                                imageMgr.setImageDataFromBitmap(fakeImg);
 
+                                boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, (int)countryID, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
+                                if(isInserted){
+                                    //Toast.makeText(Registro_B.this, "Data inserted correctly", Toast.LENGTH_LONG).show();
+                                    goToDashboard();
+                                }else
+                                {
+                                    Toast.makeText(Registro_B.this, "Data Not inserted correctly", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
                     }
                 }
         );

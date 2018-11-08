@@ -129,6 +129,29 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return person;
     }
 
+    public PersonTO getPersonByUserNamePass(String username, String pass){
+        PersonTO person = new PersonTO();
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+username+"' and password = '"+pass+"'", null);
+        if(res.getCount() > 0){
+            res.moveToNext();
+            person.setPersonID(Integer.parseInt(res.getString(0)));
+            person.setName(res.getString(1));
+            person.setSurName(res.getString(2));
+            person.setUniqueID(res.getString(3));
+            person.setUserName(res.getString(4));
+            person.setPassword(res.getString(5));
+            person.setEmail(res.getString(6));
+            person.setCountry_alphaID(Integer.parseInt(res.getString(7)));
+            person.setBirthDate(res.getString(8));
+            person.setCreateDate(res.getString(9));
+            person.setUpdateDate(res.getString(10));
+            person.setImgData(res.getBlob(11));
+            person.setEstatusID(Integer.parseInt(res.getString(12)));
+        }
+        return person;
+    }
+
     public PersonTO getPersonByEmail(String email){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE email = '"+email+"'", null);

@@ -153,6 +153,13 @@ public class Functions {
         return flag;
     }
 
+    public boolean grantAccess(DatabaseModel model, String userName, String pass){
+        boolean flag = false;
+        PersonTO person = model.getPersonByUserNamePass(userName,pass);
+        flag = person.getPersonID() > 0 ? true : false;
+        return flag;
+    }
+
     public boolean isEmailFormat(String email){
         boolean flag = false;
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
