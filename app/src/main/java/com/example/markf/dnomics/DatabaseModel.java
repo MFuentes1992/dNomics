@@ -19,7 +19,6 @@ public class DatabaseModel extends SQLiteOpenHelper {
     public DatabaseModel(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
-    SQLiteDatabase db = this.getWritableDatabase();
 
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -38,9 +37,8 @@ public class DatabaseModel extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertCountry(String country_alpha, String name){
+    public long insertCountryAsync(SQLiteDatabase db, String country_alpha, String name){
         String tableName = "country";
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("country_alpha", country_alpha);
         contentValues.put("name", name);
@@ -106,6 +104,28 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return res;
     }
 
+    public boolean insertPersonAsync (SQLiteDatabase db, PersonTO _person){
+        boolean res = false;
+        String tableName = "person";
+        PersonTO person = _person;
+        ContentValues contentValue = new ContentValues();
+        contentValue.put("name", person.getName());
+        contentValue.put("surname", person.getSurName());
+        contentValue.put("uniqueID", person.getUniqueID());
+        contentValue.put("username", person.getUserName());
+        contentValue.put("password", person.getPassword());
+        contentValue.put("email", person.getEmail());
+        contentValue.put("country_alphaID", person.getCountry_alphaID());
+        contentValue.put("birth_date", person.getBirthDate().toString());
+        contentValue.put("create_date", person.getCreateDate().toString());
+        contentValue.put("img_data", person.getImgData());
+        contentValue.put("update_date", person.getUpdateDate().toString());
+        contentValue.put("estatus", person.getEstatusID());
+        long _res = db.insert(tableName, null, contentValue);
+        if(_res != -1){res=true;}
+        return res;
+    }
+
     public PersonTO getPersonByUserName(String userName){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+userName+"'", null);
@@ -132,6 +152,28 @@ public class DatabaseModel extends SQLiteOpenHelper {
     public PersonTO getPersonByUserNamePass(String username, String pass){
         PersonTO person = new PersonTO();
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+username+"' and password = '"+pass+"'", null);
+        if(res.getCount() > 0){
+            res.moveToNext();
+            person.setPersonID(Integer.parseInt(res.getString(0)));
+            person.setName(res.getString(1));
+            person.setSurName(res.getString(2));
+            person.setUniqueID(res.getString(3));
+            person.setUserName(res.getString(4));
+            person.setPassword(res.getString(5));
+            person.setEmail(res.getString(6));
+            person.setCountry_alphaID(Integer.parseInt(res.getString(7)));
+            person.setBirthDate(res.getString(8));
+            person.setCreateDate(res.getString(9));
+            person.setUpdateDate(res.getString(10));
+            person.setImgData(res.getBlob(11));
+            person.setEstatusID(Integer.parseInt(res.getString(12)));
+        }
+        return person;
+    }
+
+    public PersonTO getPersonByUserNamePass(SQLiteDatabase sqLiteDatabase, String username, String pass){
+        PersonTO person = new PersonTO();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+username+"' and password = '"+pass+"'", null);
         if(res.getCount() > 0){
             res.moveToNext();

@@ -3,6 +3,7 @@ package com.example.markf.dnomics;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -59,11 +60,13 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         uniqueID = intent.getStringExtra("_uniqueid");
         email = intent.getStringExtra("_email");
 
+        Log.d("print1", usuario);
+
         dbModel =  new DatabaseModel(this);
         //get the active session of the current user
         activeSession = getUserSession(usuario, password);
         //if the active session is equals null (does not exits) then close all the operation
-        if(activeSession == null){
+        if(activeSession.getName().length() <= 0){
             salir();
         }
 
@@ -179,7 +182,9 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
     public PersonTO getUserSession(String userName, String pass){
         PersonTO person = new PersonTO();
-        person = dbModel.getPersonByUserNamePass(userName,pass);
+        SQLiteDatabase db = dbModel.getWritableDatabase();
+        person = dbModel.getPersonByUserNamePass(db,userName,pass);
+        Log.d("PersonName:", person.getName());
         return person;
     }
 

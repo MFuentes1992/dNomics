@@ -3,6 +3,7 @@ package com.example.markf.dnomics;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +23,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Registro_B extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    DatabaseModel dbModel;
     TextView titleActivity;
     TextView lblbirthDate;
     TextView lblCountry;
@@ -54,7 +54,6 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         surname = intent.getStringExtra("_surname");
         uniqueID = intent.getStringExtra("_uniqueid");
         email = intent.getStringExtra("_email");
-        dbModel =  new DatabaseModel(this);
         
         lblbirthDate = (TextView)findViewById(R.id.lblBirthDate);
         lblCountry = (TextView)findViewById(R.id.lblCountry);
@@ -71,7 +70,6 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.registro_country, R.layout.support_simple_spinner_dropdown_item);
         spinnerRegistroCountry.setAdapter(adapter);
         spinnerRegistroCountry.setOnItemSelectedListener(Registro_B.this);
-
         saveData();
     }
 
@@ -115,36 +113,22 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         Registro_B.this.startActivity(intent);
     }
 
+    public void doInBackgroud(){
+        new DaemonHandler(this, new DaemonHandler.AsyncResponse(){
+            @Override
+            public void processFinish(){
+                goToDashboard();
+            }
+        }).execute(alphaCountry,country,nombre,surname,uniqueID,usuario,password,email,getBirthDate(),getCurrentDate(),getCurrentDate());
+    }
+
     public void saveData(){
         btnSaveRegistro.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         progressBar.setVisibility(View.VISIBLE);
-
-                        new Handler().post(new Runnable() {
-                            @Override
-                            public void run() {
-                                Functions helper = new Functions();
-                                long countryID = dbModel.insertCountry(alphaCountry, country);
-
-                                //Storing a fake image into the image data field in the person's record - all users must have an initial value
-                                Bitmap fakeImg = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.alisa);
-                                //Call ImageHandler
-                                ImageHandler imageMgr = new ImageHandler();
-                                //Convert bitmap into byte array
-                                imageMgr.setImageDataFromBitmap(fakeImg);
-
-                                boolean isInserted = dbModel.insertPerson( helper.fillPerson(nombre, surname, uniqueID, usuario, password, email, (int)countryID, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
-                                if(isInserted){
-                                    //Toast.makeText(Registro_B.this, "Data inserted correctly", Toast.LENGTH_LONG).show();
-                                    goToDashboard();
-                                }else
-                                {
-                                    Toast.makeText(Registro_B.this, "Data Not inserted correctly", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
+                        doInBackgroud();
                     }
                 }
         );
