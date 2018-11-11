@@ -14,6 +14,13 @@ public class ImageHandler {
 
     private byte[] imageData = null;
 
+    ImageHandler(){
+    }
+
+    ImageHandler(byte[] byteArray){
+        imageData = byteArray;
+    }
+
     public void setImageDataFromBitmap(Bitmap image){
         if(image != null){
             imageData = bitmapToByte(image);
@@ -25,7 +32,7 @@ public class ImageHandler {
     public byte[] bitmapToByte(Bitmap bitmap){
         try{
             ByteArrayOutputStream stream  = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,80,stream);
             byte[] x = stream.toByteArray();
             stream.close();
             return x;

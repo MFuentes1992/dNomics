@@ -41,6 +41,7 @@
     <string name="emailRegistered">El email ingresado ya esta registrado, por favor, ingresa otro email para continuar o puedes recuperar tu contraseña desde la pantalla de inicio. \nGracias.</string>
     <string name="emailFormat">El email ingresado no es valido, por favor, ingresa un email valido para continuar. \nGracias.</string>
     <string name="userRegistered">El usuario ingresado ya esta registrado, por favor, ingresa otro usuario para continuar. \nGracias.</string>
+    <string name="userNotRegistered">El usuario ingresado no esta registrado, por favor, ingresa otro usuario para continuar. \nGracias.</string>
     <string name="Dashboard">Dashboard</string>
 
 

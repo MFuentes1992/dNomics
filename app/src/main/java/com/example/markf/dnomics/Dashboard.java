@@ -20,10 +20,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     // Objects and variables for getting user's db info
-    DatabaseModel dbModel;
+    Intent intent = null;
+    //DatabaseModel dbModel;
     PersonTO activeSession = null;
-    Functions functionsHelper;
-
+    //Strings
     String alphaCountry;
     String country;
     String usuario;
@@ -32,57 +32,32 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     String surname;
     String uniqueID;
     String email;
-
+    //TextViews
     TextView lblDraft;
     TextView lblSubmitted;
     TextView lblTicket;
     TextView lblSetings;
-
     TextView lblUserName;
-
-    CircleImageView imageView;
-
+    //Circular Profile Image
+    CircleImageView profileImage;
+    //DropDown Menu options
     Spinner doptions;
-
+    //New Expense Report
     FloatingActionButton fabNewReport;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Intent intent = getIntent();
-
-        //Get user's info through the activity intent, when came from new entry
-
-        usuario = intent.getStringExtra("_usuario");
-        password = intent.getStringExtra("_password");
-        nombre = intent.getStringExtra("_nombre");
-        surname = intent.getStringExtra("_surname");
-        uniqueID = intent.getStringExtra("_uniqueid");
-        email = intent.getStringExtra("_email");
-
-        Log.d("print1", usuario);
-
-        dbModel =  new DatabaseModel(this);
-        //get the active session of the current user
-        activeSession = getUserSession(usuario, password);
-        //if the active session is equals null (does not exits) then close all the operation
-        if(activeSession.getName().length() <= 0){
-            salir();
-        }
-
-        functionsHelper = new Functions();
-
+        intent = getIntent();
+        Init();
         lblDraft = (TextView)findViewById(R.id.lblDraft);
         lblSubmitted = (TextView)findViewById(R.id.lblSubmitted);
         lblTicket = (TextView)findViewById(R.id.lblTicket);
         lblSetings = (TextView)findViewById(R.id.lblSetings);
         lblUserName = (TextView)findViewById(R.id.lblUserName);
-        imageView = (CircleImageView)findViewById(R.id.profile_image);
+        profileImage = (CircleImageView)findViewById(R.id.profile_image);
         doptions = (Spinner)findViewById(R.id.dashboardOptions);
         fabNewReport = findViewById(R.id.fabNewReport);
-
-        //Call for the ImageHandler
-        ImageHandler imgMgr = new ImageHandler();
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.dashboard_options, R.layout.support_simple_spinner_dropdown_item);
         doptions.setAdapter(adapter);
@@ -93,7 +68,6 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         lblTicket.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblSetings.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
-        lblUserName.setText(activeSession.getName()+" "+activeSession.getSurName().substring(0,1)+".");
 
         editProfile();
         newReport();
@@ -116,7 +90,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     }
 
     public void editProfile(){
-        imageView.setOnClickListener(new View.OnClickListener() {
+        profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToEditProfile();
@@ -180,8 +154,45 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
     }
 
+
+    private void Init(){
+
+        //Get user's info through the activity intent, when came from new entry
+
+        usuario = intent.getStringExtra("_usuario");
+        password = intent.getStringExtra("_password");
+        nombre = intent.getStringExtra("_nombre");
+        surname = intent.getStringExtra("_surname");
+        uniqueID = intent.getStringExtra("_uniqueid");
+        email = intent.getStringExtra("_email");
+
+        //Start Daemon ---HELLCAT--- To retrieve user information in another thread
+        new HellCat( getApplicationContext(), new HellCat.AsyncTask(){
+            @Override
+            public void workHellCat(){
+                activeSession = getUserSession(usuario, password);
+            }
+            @Override
+            public  void finishHellCat(){
+                Log.d("HellCat", "Finishing Thread...");
+                if(activeSession.getName().length() <= 0){
+                    salir();
+                }
+                ImageHandler bitmapImage = new ImageHandler(activeSession.getImgData());
+                profileImage.setImageBitmap(bitmapImage.getImageDataInBitmap());
+                lblUserName.setText(activeSession.getName()+" "+activeSession.getSurName().substring(0,1)+".");
+            }
+        }).execute();
+
+        activeSession = getUserSession(usuario, password);
+
+
+
+    }
+
     public PersonTO getUserSession(String userName, String pass){
         PersonTO person = new PersonTO();
+        DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         SQLiteDatabase db = dbModel.getWritableDatabase();
         person = dbModel.getPersonByUserNamePass(db,userName,pass);
         Log.d("PersonName:", person.getName());
@@ -189,6 +200,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     }
 
     public void salir(){
+        DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         dbModel.close();
 
         alphaCountry = "";
