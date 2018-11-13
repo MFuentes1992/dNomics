@@ -135,6 +135,20 @@
                 android:inputType="textPersonName"
                 android:text="@string/no_text" />
 
+            <TextView
+                android:id="@+id/lblEmailEditProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
+                android:text="@string/email" />
+
+            <EditText
+                android:id="@+id/txtEmailEditProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="@string/no_text" />
+
             <Button
                 android:id="@+id/btnUpdateEditProfile"
                 android:layout_width="match_parent"

@@ -81,7 +81,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return country;
     }
 
-    public boolean insertPerson ( PersonTO _person){
+    public boolean updatePerson ( PersonTO _person){
         boolean res = false;
         String tableName = "person";
         PersonTO person = _person;
@@ -99,7 +99,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         contentValue.put("img_data", person.getImgData());
         contentValue.put("update_date", person.getUpdateDate().toString());
         contentValue.put("estatus", person.getEstatusID());
-        long _res = db.insert(tableName, null, contentValue);
+        long _res = db.update(tableName, contentValue, "personID = "+_person.getPersonID(), null);
         if(_res != -1){res=true;}
         return res;
     }

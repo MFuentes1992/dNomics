@@ -80,6 +80,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         intent.putExtra("_nombre", nombre);
         intent.putExtra("_surname", surname);
         intent.putExtra("_uniqueid", uniqueID);
+        intent.putExtra("_email",email);
         Dashboard.this.startActivity(intent);
     }
 
@@ -185,9 +186,6 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         }).execute();
 
         activeSession = getUserSession(usuario, password);
-
-
-
     }
 
     public PersonTO getUserSession(String userName, String pass){
