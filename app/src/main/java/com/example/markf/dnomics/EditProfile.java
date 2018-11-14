@@ -124,6 +124,7 @@ public class EditProfile extends AppCompatActivity {
             public void finishHellCat() {
                 if(updatedFlag){
                     Toast.makeText(getApplicationContext(), "Datos Actualizados", Toast.LENGTH_LONG).show();
+                    goToEditDashboard();
                 }else {
                     Toast.makeText(getApplicationContext(), "Something went wrong...", Toast.LENGTH_LONG).show();
                 }
@@ -213,6 +214,17 @@ public class EditProfile extends AppCompatActivity {
         email = "";
 
         Intent intent = new Intent(EditProfile.this, MainActivity.class);
+        EditProfile.this.startActivity(intent);
+    }
+
+    private void goToEditDashboard(){
+        Intent intent = new Intent(EditProfile.this, Dashboard.class);
+        intent.putExtra("_usuario", usuario);
+        intent.putExtra("_password", password);
+        intent.putExtra("_nombre", nombre);
+        intent.putExtra("_surname", surname);
+        intent.putExtra("_uniqueid", uniqueID);
+        intent.putExtra("_email",email);
         EditProfile.this.startActivity(intent);
     }
 
