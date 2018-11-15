@@ -3,12 +3,19 @@ package com.example.markf.dnomics;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class NewReport extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -17,29 +24,36 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
     TextView lblNewReport;
     TextView lblDate;
     TextView lblLocation;
+    DatePicker reportDate;
+    EditText txtReportName;
+    EditText txtReportLocation;
     Button btnSave;
-    Spinner location;
+    boolean isSaved = false;
+    int personID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_report);
 
+        Intent intent = getIntent();
+        personID = Integer.parseInt(intent.getStringExtra("personID"));
+        dbModel = new DatabaseModel(getApplicationContext());
+
         lblReportName = (TextView)findViewById(R.id.lblReportName);
         lblDate = (TextView)findViewById(R.id.lblReportDate);
         lblLocation = (TextView)findViewById(R.id.lblLocation);
         btnSave = (Button)findViewById(R.id.btnGoToLineItem);
-        location = (Spinner)findViewById(R.id.spinnerLocation);
+        reportDate = (DatePicker)findViewById(R.id.ReportDate);
+
+        txtReportName = (EditText)findViewById(R.id.txtReportName);
+        txtReportLocation = (EditText)findViewById(R.id.txtReportLocation);
 
         lblReportName.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblDate.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblLocation.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         btnSave.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.registro_country, R.layout.support_simple_spinner_dropdown_item);
-
-        location.setAdapter(adapter);
-        location.setOnItemSelectedListener(NewReport.this);
 
         saveReport();
     }
@@ -58,9 +72,38 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToLineItem();
+                saveReportIntoDB();
             }
         });
+    }
+
+    private void saveReportIntoDB(){
+
+        new HellCat(getApplicationContext(), new HellCat.AsyncTask() {
+            @Override
+            public void finishHellCat() {
+                if(isSaved){
+                    goToLineItem();
+                }
+            }
+
+            @Override
+            public void workHellCat() {
+                isSaved = dbModel.insertReport(new Functions().fillReport(txtReportName.getText().toString(), getReportDate(), txtReportLocation.getText().toString(), personID));
+            }
+        }).execute();
+
+    }
+
+    public String getReportDate(){
+        int day = reportDate.getDayOfMonth();
+        int month = reportDate.getMonth();
+        int year = reportDate.getYear();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+        DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
+        String date = df.format(calendar.getTime());
+        return date;
     }
 
     private void goToLineItem(){

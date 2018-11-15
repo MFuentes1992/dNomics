@@ -139,6 +139,15 @@ public class Functions {
         return person;
     }
 
+    public ReportTO fillReport(String reportName, String reportDate, String reportLocation, int personID){
+        ReportTO report = new ReportTO();
+        report.setReportName(reportName);
+        report.setReportDate(reportDate);
+        report.setPersonID(personID);
+        report.setReportLocation(reportLocation);
+        return report;
+    }
+
     public boolean isEmailRegistered(DatabaseModel model, String email){
         boolean flag = false;
         PersonTO person = model.getPersonByEmail(email);

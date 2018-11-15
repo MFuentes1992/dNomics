@@ -91,11 +91,10 @@
                 android:layout_height="50dp"
                 android:text="@string/location" />
 
-            <Spinner
-                android:id="@+id/spinnerLocation"
+            <EditText
+                android:id="@+id/txtReportLocation"
                 android:layout_width="match_parent"
-                android:textAlignment="center"
-                android:layout_height="50dp"></Spinner>
+                android:layout_height="50dp"></EditText>
 
             <Button
                 android:id="@+id/btnGoToLineItem"

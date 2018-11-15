@@ -129,6 +129,19 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return res;
     }
 
+    public boolean insertReport(ReportTO report){
+        boolean flag = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValue = new ContentValues();
+        contentValue.put("personID", report.getPersonID());
+        contentValue.put("report_name", report.getReportName());
+        contentValue.put("report_date", report.getReportDate());
+        contentValue.put("report_location", report.getReportLocation());
+        long _res = db.insert("report_header", null, contentValue);
+        if(_res != -1) {flag = true;}
+        return flag;
+    }
+
     public PersonTO getPersonByUserName(String userName){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+userName+"'", null);
