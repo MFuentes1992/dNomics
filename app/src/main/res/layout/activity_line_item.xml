@@ -55,21 +55,30 @@
                     />
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/lblLineItemDate"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/data_screen_control_padding_top"
-                android:text="@string/lineitemdate" />
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <DatePicker
-                android:id="@+id/lineItemDate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:datePickerMode="spinner"
-                android:calendarViewShown="false"
-                />
+                <TextView
+                    android:id="@+id/LireportName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text=""
+                    android:textColor="@color/colorBlue"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/reportNumber"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/colorFrogGreen"
+                    android:textSize="15dp" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/lblLineItemAmt"
@@ -95,36 +104,6 @@
 
             <EditText
                 android:id="@+id/txtLineItemDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="50"
-                android:ems="10"
-                android:text="@string/no_text" />
-
-            <TextView
-                android:id="@+id/lblLineItemFrom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/data_screen_control_padding_top"
-                android:text="@string/lineitemfrom" />
-
-            <EditText
-                android:id="@+id/txtLineItemFrom"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="50"
-                android:ems="10"
-                android:text="@string/no_text" />
-
-            <TextView
-                android:id="@+id/lblLineItemTo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/data_screen_control_padding_top"
-                android:text="@string/lineitemto" />
-
-            <EditText
-                android:id="@+id/txtLineItemTo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="50"

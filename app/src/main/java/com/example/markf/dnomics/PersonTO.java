@@ -1,7 +1,5 @@
 package com.example.markf.dnomics;
 
-import java.util.Date;
-
 /**
  * Created by markf on 15/05/2018.
  */
@@ -13,7 +11,7 @@ public class PersonTO {
     private int estatusID;
     private int tipoID;
     private int deleted;
-    private int personID;
+    private long personID;
 
     private String createDate;
     private String updateDate;
@@ -56,11 +54,11 @@ public class PersonTO {
         this.password = password;
     }
 
-    public int getPersonID() {
+    public long getPersonID() {
         return personID;
     }
 
-    public void setPersonID(int personID) {
+    public void setPersonID(long personID) {
         this.personID = personID;
     }
 

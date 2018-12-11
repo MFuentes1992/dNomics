@@ -3,14 +3,11 @@ package com.example.markf.dnomics;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -28,7 +25,7 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
     EditText txtReportName;
     EditText txtReportLocation;
     Button btnSave;
-    boolean isSaved = false;
+    long lastID = 0;
     int personID;
 
     @Override
@@ -82,14 +79,14 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
         new HellCat(getApplicationContext(), new HellCat.AsyncTask() {
             @Override
             public void finishHellCat() {
-                if(isSaved){
-                    goToLineItem();
+                if(lastID > 0){
+                    goToLineItem(lastID);
                 }
             }
 
             @Override
             public void workHellCat() {
-                isSaved = dbModel.insertReport(new Functions().fillReport(txtReportName.getText().toString(), getReportDate(), txtReportLocation.getText().toString(), personID));
+                lastID = dbModel.insertReport(new Functions().fillReport(txtReportName.getText().toString(), getReportDate(), txtReportLocation.getText().toString(), personID));
             }
         }).execute();
 
@@ -106,8 +103,9 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
         return date;
     }
 
-    private void goToLineItem(){
+    private void goToLineItem(long reportID){
         Intent intent = new Intent(NewReport.this, LineItem.class);
+        intent.putExtra("reportID", String.valueOf(reportID));
         NewReport.this.startActivity(intent);
     }
 }

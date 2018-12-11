@@ -23,7 +23,7 @@
     <string name="lineitem">Nuevo Gasto</string>
     <string name="lineitemdate">&#xf073; Fecha</string>
     <string name="lineitemamt">&#xf0d6; Total</string>
-    <string name="lineitemdescription">&#xf044; Descripción</string>
+    <string name="lineitemdescription">&#xf044; Detalle</string>
     <string name="lineitemfrom">&#xf1b9; Desde</string>
     <string name="lineitemto">&#xf1b9; Hasta</string>
     <string name="lineitemmerchant">&#xf07a; Marca/Vendedor</string>

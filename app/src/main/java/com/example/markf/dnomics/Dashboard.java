@@ -186,7 +186,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
             }
         }).execute();
 
-        activeSession = getUserSession(usuario, password);
+        //activeSession = getUserSession(usuario, password);
     }
 
     public PersonTO getUserSession(String userName, String pass){

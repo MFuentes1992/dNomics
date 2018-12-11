@@ -6,8 +6,8 @@ package com.example.markf.dnomics;
 
 public class ReportTO {
 
-    private int reportID;
-    private int personID;
+    private long reportID;
+    private long personID;
     private String ReportName;
     private String ReportDate;
     private String ReportLocation;
@@ -19,15 +19,15 @@ public class ReportTO {
         ReportLocation = "";
     }
 
-    public int getPersonID() {
+    public long getPersonID() {
         return personID;
     }
 
-    public void setPersonID(int personID) {
+    public void setPersonID(long personID) {
         this.personID = personID;
     }
 
-    public int getReportID() {
+    public long getReportID() {
         return reportID;
     }
 
@@ -59,9 +59,9 @@ public class ReportTO {
         ReportLocation = reportLocation;
     }
 
-    public void setReportID()
+    public void setReportID(long reportID)
     {
-
+        this.reportID = reportID;
     }
 
 }

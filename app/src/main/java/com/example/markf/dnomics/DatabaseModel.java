@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 /**
@@ -129,8 +128,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean insertReport(ReportTO report){
-        boolean flag = false;
+    public long insertReport(ReportTO report){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValue = new ContentValues();
         contentValue.put("personID", report.getPersonID());
@@ -138,8 +136,22 @@ public class DatabaseModel extends SQLiteOpenHelper {
         contentValue.put("report_date", report.getReportDate());
         contentValue.put("report_location", report.getReportLocation());
         long _res = db.insert("report_header", null, contentValue);
-        if(_res != -1) {flag = true;}
-        return flag;
+        return _res;
+    }
+
+    public ReportTO getReportByID(long ID){
+        ReportTO report = new ReportTO();
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM report_header WHERE reportID = "+ID, null);
+        if(res.getCount() > 0 ){
+            res.moveToNext();
+            report.setReportID(Long.parseLong(res.getString(0)));
+            report.setPersonID(Long.parseLong(res.getString(1)));
+            report.setReportName(res.getString(2));
+            report.setReportDate(res.getString(3));
+            report.setReportLocation(res.getString(4));
+        }
+        return report;
     }
 
     public PersonTO getPersonByUserName(String userName){
