@@ -130,12 +130,13 @@ public class Functions {
         return person;
     }
 
-    public ReportTO fillReport(String reportName, String reportDate, String reportLocation, int personID){
+    public ReportTO fillReport(String reportName, String reportDate, String reportLocation, int personID, String reportNumber){
         ReportTO report = new ReportTO();
         report.setReportName(reportName);
         report.setReportDate(reportDate);
         report.setPersonID(personID);
         report.setReportLocation(reportLocation);
+        report.setReportNumber(reportNumber);
         return report;
     }
 

@@ -11,12 +11,14 @@ public class ReportTO {
     private String ReportName;
     private String ReportDate;
     private String ReportLocation;
+    private String ReportNumber;
 
     public ReportTO(){
         reportID = 0;
         ReportName = "";
         ReportDate = "";
         ReportLocation = "";
+        ReportNumber = "";
     }
 
     public long getPersonID() {
@@ -64,4 +66,11 @@ public class ReportTO {
         this.reportID = reportID;
     }
 
+    public String getReportNumber() {
+        return ReportNumber;
+    }
+
+    public void setReportNumber(String reportNumber) {
+        ReportNumber = reportNumber;
+    }
 }

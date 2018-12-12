@@ -86,13 +86,13 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
 
             @Override
             public void workHellCat() {
-                lastID = dbModel.insertReport(new Functions().fillReport(txtReportName.getText().toString(), getReportDate(), txtReportLocation.getText().toString(), personID));
+                lastID = dbModel.insertReport(new Functions().fillReport(txtReportName.getText().toString(), getReportDate(), txtReportLocation.getText().toString(), personID, "RPA0000000"));
             }
         }).execute();
 
     }
 
-    public String getReportDate(){
+    private String getReportDate(){
         int day = reportDate.getDayOfMonth();
         int month = reportDate.getMonth();
         int year = reportDate.getYear();

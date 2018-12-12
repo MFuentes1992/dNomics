@@ -22,6 +22,8 @@ public class LineItem extends AppCompatActivity {
 
     ReportTO reportSession = null;
 
+    boolean setReportNumberLabel = false;
+
     long reportID = 0;
 
     @Override
@@ -57,15 +59,27 @@ public class LineItem extends AppCompatActivity {
         new HellCat(getApplicationContext(), new HellCat.AsyncTask() {
             @Override
             public void finishHellCat() {
-                lblReportNumber.setText(String.valueOf(reportSession.getReportID()));
+                if(setReportNumberLabel)
+                lblReportNumber.setText(reportSession.getReportNumber());
                 lblReportName.setText(reportSession.getReportName());
             }
 
             @Override
             public void workHellCat() {
                 reportSession = getReportSession(reportID);
+                reportSession.setReportNumber(generateReportNumber(reportID));
+                DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
+                setReportNumberLabel = dbModel.updateReport(reportSession);
+                reportSession = getReportSession(reportID);
             }
         }).execute();
+    }
+
+    private String generateReportNumber(Long reportID){
+        String reportString = "RPA0000000";
+        String strReportID = String.valueOf(reportID);
+        String reportNumber = reportString.substring(0,reportString.length() - strReportID.length()) + strReportID;
+        return reportNumber;
     }
 
     public ReportTO getReportSession(long reportID){
