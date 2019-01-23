@@ -32,8 +32,8 @@
     <string name="reportname">&#xf15b; Nombre del Reporte</string>
     <string name="date">&#xf133; Fecha</string>
     <string name="location">&#xf3c5; Lugar</string>
-    <string name="draft">Draft</string>
-    <string name="submitted">Reportes Enviados</string>
+    <string name="draft">Aprobar</string>
+    <string name="submitted">Enviados</string>
     <string name="ticket">Reporte desde ticket</string>
     <string name="setings">Setings</string>
     <string name="showMessageAtention">¡Atención!</string>
