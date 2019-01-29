@@ -17,7 +17,7 @@
     <string name="draftico">&#xf01c;</string>
     <string name="submittedico">&#xf0e0;</string>
     <string name="ticketico">&#xf1c5;</string>
-    <string name="setingsico">&#xf085;</string>
+    <string name="setingsico">&#xf0c9;</string>
     <string name="editprofile">Editar Perfil</string>
     <string name="newreport">Nuevo Reporte</string>
     <string name="lineitem">Nuevo Gasto</string>
@@ -32,8 +32,8 @@
     <string name="reportname">&#xf15b; Nombre del Reporte</string>
     <string name="date">&#xf133; Fecha</string>
     <string name="location">&#xf3c5; Lugar</string>
-    <string name="draft">Aprobar</string>
-    <string name="submitted">Enviados</string>
+    <string name="draft">Owned</string>
+    <string name="submitted">Debt</string>
     <string name="ticket">Reporte desde ticket</string>
     <string name="setings">Setings</string>
     <string name="showMessageAtention">¡Atención!</string>

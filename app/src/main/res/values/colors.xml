@@ -12,4 +12,5 @@
     <color name="colorRed">#E91E63</color>
     <!-- Color for the Dashboard backgound -->
     <color name="colorLightGray">#eeeeee</color>
+    <color name="colorDarkGray">#a9a9a9</color>
 </resources>
