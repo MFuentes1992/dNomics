@@ -31,11 +31,14 @@ public class MainActivity extends AppCompatActivity {
     EditText userName;
     EditText userPassword;
     Button btnLogin;
+    DatabaseModel dbModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbModel = new DatabaseModel(getApplicationContext());
 
         //Set the font for the title bar
         txtTitle = (TextView)findViewById(R.id.txtTitle);
@@ -78,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
     public PersonTO getUserSession(String userName, String pass){
         PersonTO person = new PersonTO();
-        DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         SQLiteDatabase db = dbModel.getWritableDatabase();
         person = dbModel.getPersonByUserNamePass(db,userName,pass);
         return person;

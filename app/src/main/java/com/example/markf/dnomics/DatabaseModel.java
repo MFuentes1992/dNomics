@@ -22,6 +22,9 @@ public class DatabaseModel extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String strQueryCountry = "CREATE TABLE country (country_alphaID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, country_alpha TEXT NOT NULL, name TEXT NOT NULL);";
+        String strQueryUserStatus = "CREATE TABLE user_status (statusID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL);";
+        String strQueryReportStatus = "CREATE TABLE report_status (statusID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL); ";
+        String strQueryRoutingProcess = "CREATE TABLE routing_process(routingID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, personID INTEGER NOT NULL, reportID INTEGER NOT NULL);";
         String strQueryReportHeader = "CREATE TABLE report_header (reportID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, personID INTEGER NOT NULL, report_name TEXT NOT NULL, report_date TEXT NOT NULL, report_location TEXT NOT NULL, report_number TEXT NOT NULL);";
         String strQueryReportLineItem = "CREATE TABLE line_item (lineitemID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, reportID INTEGER NOT NULL, lineitem_date TEXT NOT NULL, lineitem_total INTEGER NOT NULL, lineitem_purpose TEXT NOT NULL, lineitem_from TEXT NOT NULL, lineitem_to TEXT NOT NULL, lineitem_merchant TEXT NOT NULL, lineitem_allocation TEXT NOT NULL);";
         String strQueryPerson = "CREATE TABLE person (personID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, surname TEXT NOT NULL, uniqueID TEXT NOT NULL, username TEXT NOT NULL, password TEXT NOT NULL, email TEXT NOT NULL, country_alphaID INTEGER NOT NULL, birth_date TEXT NOT NULL, create_date TEXT NOT NULL, update_date TEXT NOT NULL, img_data BLOB, estatus INTEGER NOT NULL);";
@@ -30,6 +33,9 @@ public class DatabaseModel extends SQLiteOpenHelper {
         db.execSQL(strQueryReportLineItem);
         db.execSQL(strQueryCountry);
         db.execSQL(strQueryPerson);
+        db.execSQL(strQueryUserStatus);
+        db.execSQL(strQueryReportStatus);
+        db.execSQL(strQueryRoutingProcess);
     }
 
     @Override
@@ -38,6 +44,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS person");
         onCreate(db);
     }
+
 
     public long insertCountryAsync(SQLiteDatabase db, String country_alpha, String name){
         String tableName = "country";
