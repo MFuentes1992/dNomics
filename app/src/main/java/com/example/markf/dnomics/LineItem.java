@@ -25,6 +25,7 @@ public class LineItem extends AppCompatActivity {
     boolean setReportNumberLabel = false;
 
     long reportID = 0;
+    double reportTotal = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

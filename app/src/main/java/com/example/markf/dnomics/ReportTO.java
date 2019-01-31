@@ -8,6 +8,7 @@ public class ReportTO {
 
     private long reportID;
     private long personID;
+    private double reportTotal;
     private String ReportName;
     private String ReportDate;
     private String ReportLocation;
@@ -15,6 +16,7 @@ public class ReportTO {
 
     public ReportTO(){
         reportID = 0;
+        reportTotal = 0.0;
         ReportName = "";
         ReportDate = "";
         ReportLocation = "";
@@ -72,5 +74,13 @@ public class ReportTO {
 
     public void setReportNumber(String reportNumber) {
         ReportNumber = reportNumber;
+    }
+
+    public double getReportTotal() {
+        return reportTotal;
+    }
+
+    public void setReportTotal(double reportTotal) {
+        this.reportTotal = reportTotal;
     }
 }
