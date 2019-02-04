@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -75,12 +76,9 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
 
     public String getBirthDate(){
         int day = sBirthDate.getDayOfMonth();
-        int month = sBirthDate.getMonth();
+        int month = sBirthDate.getMonth() + 1;
         int year = sBirthDate.getYear();
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-        DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
-        String date = df.format(calendar.getTime());
+        String date = ""+day+"-"+month+"-"+year;
         return date;
     }
 
