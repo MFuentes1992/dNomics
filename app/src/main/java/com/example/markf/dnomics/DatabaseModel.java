@@ -159,6 +159,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         contentValue.put("report_date", report.getReportDate());
         contentValue.put("report_location", report.getReportLocation());
         contentValue.put("report_number", report.getReportNumber());
+        contentValue.put("report_total", report.getReportTotal());
         long _res = db.insert("report_header", null, contentValue);
         return _res;
     }
