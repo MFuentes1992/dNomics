@@ -32,7 +32,8 @@
     <string name="reportname">&#xf15b; Nombre del Reporte</string>
     <string name="date">&#xf133; Fecha</string>
     <string name="location">&#xf3c5; Lugar</string>
-    <string name="draft">Owned</string>
+    <string name="owned">Owned</string>
+    <string name="draft">Draft</string>
     <string name="submitted">Debt</string>
     <string name="ticket">Reporte desde ticket</string>
     <string name="setings">Setings</string>

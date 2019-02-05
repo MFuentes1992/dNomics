@@ -71,6 +71,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
         editProfile();
         newReport();
+        goToDraft();
     }
 
     private void goToEditProfile(){
@@ -213,5 +214,17 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
         Intent intent = new Intent(Dashboard.this, MainActivity.class);
         Dashboard.this.startActivity(intent);
+    }
+
+    private void goToDraft(){
+        lblDraft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, Draft.class);
+                //Intent intent = new Intent(MainActivity.this, Dashboard.class);
+                intent.putExtra("personID", String.valueOf(activeSession.getPersonID()));
+                Dashboard.this.startActivity(intent);
+            }
+        });
     }
 }

@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,34 +20,41 @@
         </activity>
         <activity
             android:name=".Registro_A"
-            android:label="@string/title_activity_registro"
             android:configChanges="orientation|screenSize"
+            android:label="@string/title_activity_registro"
             android:theme="@style/ActionBar" />
         <activity
             android:name=".Registro_B"
-            android:label="@string/title_activity_registro"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/ActionBar"/>
+            android:label="@string/title_activity_registro"
+            android:theme="@style/ActionBar" />
         <activity
             android:name=".Dashboard"
-            android:label="@string/Dashboard"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/Dashboard"/>
+            android:label="@string/Dashboard"
+            android:theme="@style/Dashboard" />
         <activity
             android:name=".EditProfile"
-            android:label="@string/editprofile"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/ActionBar"/>
+            android:label="@string/editprofile"
+            android:theme="@style/ActionBar" />
         <activity
             android:name=".NewReport"
-            android:label="@string/newreport"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/ActionBar"/>
+            android:label="@string/newreport"
+            android:theme="@style/ActionBar" />
         <activity
             android:name=".LineItem"
-            android:label="@string/lineitem"
             android:configChanges="orientation|screenSize"
-            android:theme="@style/ActionBar"></activity>
+            android:label="@string/lineitem"
+            android:theme="@style/ActionBar" />
+        <activity android:name=".Draft"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/draft"
+            android:theme="@style/ActionBar"
+            >
+
+        </activity>
     </application>
 
 </manifest>
