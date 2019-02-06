@@ -96,10 +96,7 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
         int day = reportDate.getDayOfMonth();
         int month = reportDate.getMonth();
         int year = reportDate.getYear();
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day);
-        DateFormat df = new SimpleDateFormat("dd-mm-yyyy");
-        String date = df.format(calendar.getTime());
+        String date = day+"-"+(month+1)+"-"+year;
         return date;
     }
 
