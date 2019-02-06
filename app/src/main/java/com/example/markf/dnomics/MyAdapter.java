@@ -34,7 +34,7 @@ public class MyAdapter  extends RecyclerView.Adapter<FlowerViewHolder> {
 
     @Override
     public void onBindViewHolder(final FlowerViewHolder holder, int position) {
-        holder.lblDraftReportName.setText(reportList.get(position).getReportName());
+        holder.lblDraftReportName.setText(reportList.get(position).getReportName()+" - "+reportList.get(position).getReportDate());
         holder.lblDraftReportNumber.setText(reportList.get(position).getReportNumber());
         /*holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
