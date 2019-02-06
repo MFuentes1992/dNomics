@@ -86,7 +86,7 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
 
             @Override
             public void workHellCat() {
-                lastID = dbModel.insertReport(new Functions().fillReport(txtReportName.getText().toString(), getReportDate(), txtReportLocation.getText().toString(), personID, "RPA0000000", 0.0));
+                lastID = dbModel.insertReport(new Functions().fillReport(txtReportName.getText().toString(), getReportDate(), txtReportLocation.getText().toString(), personID, "RPA0000000", 0.0, 1));
             }
         }).execute();
 

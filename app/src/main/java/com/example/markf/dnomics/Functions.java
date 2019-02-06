@@ -130,7 +130,7 @@ public class Functions {
         return person;
     }
 
-    public ReportTO fillReport(String reportName, String reportDate, String reportLocation, int personID, String reportNumber, double reportTotal){
+    public ReportTO fillReport(String reportName, String reportDate, String reportLocation, int personID, String reportNumber, double reportTotal, int status){
         ReportTO report = new ReportTO();
         report.setReportName(reportName);
         report.setReportDate(reportDate);
@@ -138,6 +138,7 @@ public class Functions {
         report.setReportLocation(reportLocation);
         report.setReportNumber(reportNumber);
         report.setReportTotal(reportTotal);
+        report.setReportStatus(status);
         return report;
     }
 

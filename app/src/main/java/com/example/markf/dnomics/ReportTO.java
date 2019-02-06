@@ -13,6 +13,7 @@ public class ReportTO {
     private String ReportDate;
     private String ReportLocation;
     private String ReportNumber;
+    private int reportStatus;
 
     public ReportTO(){
         reportID = 0;
@@ -82,5 +83,13 @@ public class ReportTO {
 
     public void setReportTotal(double reportTotal) {
         this.reportTotal = reportTotal;
+    }
+
+    public int getReportStatus() {
+        return reportStatus;
+    }
+
+    public void setReportStatus(int reportStatus) {
+        this.reportStatus = reportStatus;
     }
 }
