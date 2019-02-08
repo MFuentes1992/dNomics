@@ -15,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -38,23 +40,28 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     TextView lblTicket;
     TextView lblSetings;
     TextView lblUserName;
+    TextView lblDraftTotal;
     //Circular Profile Image
     CircleImageView profileImage;
     //DropDown Menu options
     Spinner doptions;
     //New Expense Report
     FloatingActionButton fabNewReport;
+    int totalDraftReports = 0;
+    int personID = 0;
+
+    ArrayList<ReportTO> totalDraft;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         intent = getIntent();
-        Init();
         lblDraft = (TextView)findViewById(R.id.lblDraft);
         lblSubmitted = (TextView)findViewById(R.id.lblSubmitted);
         lblTicket = (TextView)findViewById(R.id.lblTicket);
-        lblSetings = (TextView)findViewById(R.id.lblSetings);
+        //lblSetings = (TextView)findViewById(R.id.lblSetings);
         lblUserName = (TextView)findViewById(R.id.lblUserName);
+        lblDraftTotal = (TextView)findViewById(R.id.lblDraftTotal);
         profileImage = (CircleImageView)findViewById(R.id.profile_image);
         doptions = (Spinner)findViewById(R.id.dashboardOptions);
         fabNewReport = findViewById(R.id.fabNewReport);
@@ -66,9 +73,9 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         lblDraft.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblSubmitted.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblTicket.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        lblSetings.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
+        //lblSetings.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
-
+        Init();
         editProfile();
         newReport();
         goToDraft();
@@ -100,12 +107,12 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
             }
         });
 
-        lblSetings.setOnClickListener(new View.OnClickListener() {
+        /*lblSetings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToEditProfile();
             }
-        });
+        });*/
     }
 
     public void newReport(){
@@ -168,12 +175,16 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         surname = intent.getStringExtra("_surname");
         uniqueID = intent.getStringExtra("_uniqueid");
         email = intent.getStringExtra("_email");
+        personID = Integer.parseInt(intent.getStringExtra("_personID"));
 
         //Start Daemon ---HELLCAT--- To retrieve user information in another thread
         new HellCat( getApplicationContext(), new HellCat.AsyncTask(){
             @Override
             public void workHellCat(){
                 activeSession = getUserSession(usuario, password);
+                totalDraft = getDraftReports(personID);
+                //Log.d("Draft:",String.valueOf(totalDraftReports));
+
             }
             @Override
             public  void finishHellCat(){
@@ -184,10 +195,10 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
                 ImageHandler bitmapImage = new ImageHandler(activeSession.getImgData());
                 profileImage.setImageBitmap(bitmapImage.getImageDataInBitmap());
                 lblUserName.setText(activeSession.getName()+" "+activeSession.getSurName().substring(0,1)+".");
+                totalDraftReports = totalDraft.size();
+                lblDraftTotal.setText(String.valueOf(totalDraftReports));
             }
         }).execute();
-
-        //activeSession = getUserSession(usuario, password);
     }
 
     public PersonTO getUserSession(String userName, String pass){
@@ -214,6 +225,13 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
         Intent intent = new Intent(Dashboard.this, MainActivity.class);
         Dashboard.this.startActivity(intent);
+    }
+
+    public ArrayList<ReportTO> getDraftReports(int personID){
+        DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
+        SQLiteDatabase db = dbModel.getWritableDatabase();
+        ArrayList<ReportTO> reports = dbModel.getAllDraftReports(personID);
+        return  reports;
     }
 
     private void goToDraft(){

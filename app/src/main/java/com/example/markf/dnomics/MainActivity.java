@@ -86,10 +86,11 @@ public class MainActivity extends AppCompatActivity {
         return person;
     }
 
-    private void goToDashboard(){
+    private void goToDashboard(int personID){
         Intent intent = new Intent(MainActivity.this, Dashboard.class);
         intent.putExtra("_usuario",userName.getText().toString());
         intent.putExtra("_password",userPassword.getText().toString());
+        intent.putExtra("_personID", String.valueOf(personID));
         MainActivity.this.startActivity(intent);
     }
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void finishHellCat(){
                 if(activeSession.getName().length() > 0){
-                    goToDashboard();
+                    goToDashboard((int)activeSession.getPersonID());
                 }else{
                     //Log.d("userNotfound", "User not found");
                     userName.setText("");
