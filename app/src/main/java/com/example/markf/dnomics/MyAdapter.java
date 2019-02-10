@@ -36,6 +36,7 @@ public class MyAdapter  extends RecyclerView.Adapter<FlowerViewHolder> {
     public void onBindViewHolder(final FlowerViewHolder holder, int position) {
         holder.lblDraftReportName.setText(reportList.get(position).getReportName()+" - "+reportList.get(position).getReportDate());
         holder.lblDraftReportNumber.setText(reportList.get(position).getReportNumber());
+        holder.lblDraftReportTotal.setText("$"+String.valueOf(reportList.get(position).getReportTotal()));
         /*holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +60,7 @@ class FlowerViewHolder extends RecyclerView.ViewHolder {
 
     TextView lblDraftReportName;
     TextView lblDraftReportNumber;
+    TextView lblDraftReportTotal;
     CardView mCardView;
 
     FlowerViewHolder(View itemView) {
@@ -66,6 +68,7 @@ class FlowerViewHolder extends RecyclerView.ViewHolder {
 
         lblDraftReportName = itemView.findViewById(R.id.lblDraftReportName);
         lblDraftReportNumber = itemView.findViewById(R.id.lblDraftReportNumber);
+        lblDraftReportTotal = itemView.findViewById(R.id.lblDraftReportTotal);
         mCardView = itemView.findViewById(R.id.cardview);
     }
 }
