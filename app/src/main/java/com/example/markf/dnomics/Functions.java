@@ -142,6 +142,17 @@ public class Functions {
         return report;
     }
 
+    public LineItemTO fillLineItem(long reportID, String lineItemDate, double lineItemTotal, String lineItemPurpose, String lineItemMerchant, String lineItemAllocation){
+        LineItemTO lineItem = new LineItemTO();
+        lineItem.setReportID(reportID);
+        lineItem.setLineItemDate(lineItemDate);
+        lineItem.setLineItemTotal(lineItemTotal);
+        lineItem.setLineItemPurpose(lineItemPurpose);
+        lineItem.setLineItemMerchant(lineItemMerchant);
+        lineItem.setLineItemAllocation(lineItemAllocation);
+        return lineItem;
+    }
+
     public boolean isEmailRegistered(DatabaseModel model, String email){
         boolean flag = false;
         PersonTO person = model.getPersonByEmail(email);

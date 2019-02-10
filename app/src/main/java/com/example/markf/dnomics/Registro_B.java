@@ -108,6 +108,7 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         intent.putExtra("_surname",surname);
         intent.putExtra("_uniqueid",uniqueID);
         intent.putExtra("_email",email);
+        intent.putExtra("_personID", String.valueOf(0));
         Registro_B.this.startActivity(intent);
     }
 

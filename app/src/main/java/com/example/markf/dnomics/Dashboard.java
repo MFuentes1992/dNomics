@@ -95,6 +95,8 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
     private void goToNewReport(){
         Intent intent = new Intent(Dashboard.this, NewReport.class);
         intent.putExtra("_uniqueid", activeSession.getUniqueID());
+        intent.putExtra("_usuario", activeSession.getUserName());
+        intent.putExtra("_password", activeSession.getPassword());
         intent.putExtra("personID", String.valueOf(activeSession.getPersonID()));
         Dashboard.this.startActivity(intent);
     }
