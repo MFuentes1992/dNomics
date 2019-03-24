@@ -151,6 +151,28 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return res;
     }
 
+    public boolean insertPerson(PersonTO _person){
+        boolean res = false;
+        SQLiteDatabase db = this.getWritableDatabase();
+        PersonTO person = _person;
+        ContentValues contentValue = new ContentValues();
+        contentValue.put("name", person.getName());
+        contentValue.put("surname", person.getSurName());
+        contentValue.put("uniqueID", person.getUniqueID());
+        contentValue.put("username", person.getUserName());
+        contentValue.put("password", person.getPassword());
+        contentValue.put("email", person.getEmail());
+        contentValue.put("country_alphaID", person.getCountry_alphaID());
+        contentValue.put("birth_date", person.getBirthDate().toString());
+        contentValue.put("create_date", person.getCreateDate().toString());
+        contentValue.put("img_data", person.getImgData());
+        contentValue.put("update_date", person.getUpdateDate().toString());
+        contentValue.put("estatus", person.getEstatusID());
+        long _res = db.insert("person", null, contentValue);
+        if(_res != -1){res=true;}
+        return res;
+    }
+
     public long insertReport(ReportTO report){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValue = new ContentValues();
