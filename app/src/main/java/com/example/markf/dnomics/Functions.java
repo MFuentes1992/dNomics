@@ -114,7 +114,8 @@ public class Functions {
         return counter;
     }
 
-    public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password, String email, int country, String birthDate, String createDate, String updateDate, byte[] imgurl){
+    public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password,
+                               String email, int country, String birthDate, String createDate, String updateDate, byte[] image){
         PersonTO person = new PersonTO();
         person.setName(nombre);
         person.setSurName(surname);
@@ -125,7 +126,7 @@ public class Functions {
         person.setCountry_alphaID(country);
         person.setBirthDate(birthDate);
         person.setCreateDate(createDate);
-        person.setImgData(imgurl);
+        person.setImgData(image);
         person.setUpdateDate(updateDate);
         return person;
     }

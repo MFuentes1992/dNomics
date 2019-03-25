@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,9 +15,14 @@ import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 
 public class Registro_B extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -38,6 +45,13 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
     String surname;
     String uniqueID;
     String email;
+
+    //Variables para el REST service
+    String jsonResponse = "";
+    String url = "http://192.168.0.14/add_person.php";
+    HashMap<String, String> params = new HashMap<>();
+    RequestHandler requester = new RequestHandler();
+
 
     ProgressBar progressBar;
 
@@ -78,12 +92,12 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         int day = sBirthDate.getDayOfMonth();
         int month = sBirthDate.getMonth() + 1;
         int year = sBirthDate.getYear();
-        String date = ""+day+"-"+month+"-"+year;
+        String date = ""+year+"-"+month+"-"+day;
         return date;
     }
 
     public String getCurrentDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
         String currentDateandTime = sdf.format(new Date());
         return currentDateandTime;
     }
@@ -117,11 +131,25 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         new HellCat(getApplicationContext(), new HellCat.AsyncTask() {
             @Override
             public void finishHellCat() {
-                goToDashboard();
+                progressBar.setVisibility(View.GONE);
+                try {
+
+                    JSONObject json = new JSONObject(jsonResponse);
+                    if(json.getBoolean("success")){
+                        goToDashboard();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.d("Message", jsonResponse);
             }
 
             @Override
             public void workHellCat() {
+
+                /*params.put("source", "Android:App");
+                params.put("country_alpha", "AR");
+                params.put("country_name", "Argentina");*/
 
                 //Storing a fake image into the image data field in the person's record - all users must have an initial value
                 Bitmap fakeImg = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.alisa);
@@ -130,7 +158,27 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
                 //Convert bitmap into byte array
                 imageMgr.setImageDataFromBitmap(fakeImg);
 
-                boolean flag = dbModel.insertPerson(new Functions().fillPerson(nombre, surname, uniqueID, usuario, password, email, 1, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
+                String image = Base64.encodeToString(imageMgr.getImageData(),
+                        Base64.NO_WRAP);
+
+                boolean flag = dbModel.insertPerson(new Functions().fillPerson(nombre, surname, uniqueID,
+                    usuario, password, email, 1, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
+
+                params.put("source", "Android:App");
+                params.put("first_name", nombre);
+                params.put("last_name", surname);
+                params.put("uniqueID", uniqueID);
+                params.put("username", usuario);
+                params.put("person_password", password);
+                params.put("email", email);
+                params.put("country_alphaID", "2");
+                params.put("birth_date", getBirthDate());
+                params.put("create_date", getCurrentDate());
+                params.put("update_date", getCurrentDate());
+                params.put("img_data", image);
+                params.put("statusID", "1");
+
+                jsonResponse = requester.sendPostRequest(url, params);
             }
         }).execute();
 
