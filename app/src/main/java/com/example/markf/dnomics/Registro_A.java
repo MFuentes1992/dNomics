@@ -1,44 +1,45 @@
 package com.example.markf.dnomics;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+
 public class Registro_A extends AppCompatActivity {
-
-    DatabaseModel dbModel;
-
-    TextView lblUsuario;
     TextView lblPassword;
-    TextView lblNombre;
-    TextView lblSurname;
-    TextView lbluniqueID;
     TextView lblEmail;
-    TextView titleActivity;
-
-    EditText txtUsuarioRegistro;
     EditText txtPasswordRegistro;
-    EditText txtNombreRegistro;
-    EditText txtApellidoRegistro;
-    EditText txtUniqueRegistro;
     EditText txtEmailRegistro;
 
     Button btnNextTRegistro;
-
-    String usuario;
     String password;
     String nombre;
-    String surname;
-    String uniqueID;
     String email;
+
+    //Variables para el REST service
+    String jsonResponse = "";
+    String url = "http://192.168.0.14/add_person.php";
+    HashMap<String, String> params = new HashMap<>();
+    RequestHandler requester = new RequestHandler();
 
     LinearLayout registroAContainer;
 
@@ -48,35 +49,69 @@ public class Registro_A extends AppCompatActivity {
         setContentView(R.layout.activity_registro_a);
         Intent intent = getIntent();
         String value = intent.getStringExtra("key");
-
-        lblUsuario = (TextView)findViewById(R.id.lblUserRegistro);
         lblPassword = (TextView)findViewById(R.id.lblPasswordRegistro);
-        lblNombre = (TextView)findViewById(R.id.lblNombre);
-        lblSurname = (TextView)findViewById(R.id.lblSurname);
-        lbluniqueID = (TextView)findViewById(R.id.lblUniqueID);
         lblEmail = (TextView)findViewById(R.id.lblEmail);
         btnNextTRegistro = (Button) findViewById(R.id.btnNextRegistro);
-
-        txtUsuarioRegistro = (EditText) findViewById(R.id.txtUsuarioRegistro);
         txtPasswordRegistro = (EditText) findViewById(R.id.txtPasswordRegistro);
-        txtNombreRegistro = (EditText) findViewById(R.id.txtNombreRegistro);
-        txtApellidoRegistro = (EditText) findViewById(R.id.txtApellidoRegistro);
-        txtUniqueRegistro = (EditText) findViewById(R.id.txtUniqueRegistro);
         txtEmailRegistro = (EditText) findViewById(R.id.txtEmailRegistro);
-
-        registroAContainer = (LinearLayout)findViewById(R.id.registroAContainer);
-
         lblPassword.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        lblNombre.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        lblSurname.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        lbluniqueID.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblEmail.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
-        lblUsuario.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         btnNextTRegistro.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
-        dbModel = new DatabaseModel(this); /*Datbase model*/
-
         btnNext();
+    }
+
+    public String getCurrentDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String currentDateandTime = sdf.format(new Date());
+        return currentDateandTime;
+    }
+
+    private void savePersonIntoDB(){
+
+        new HellCat(getApplicationContext(), new HellCat.AsyncTask() {
+            @Override
+            public void finishHellCat() {
+
+                try {
+
+                    JSONObject json = new JSONObject(jsonResponse);
+                    if(json.getBoolean("success")){
+                        //goToDashboard();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.d("Message", jsonResponse);
+            }
+
+            @Override
+            public void workHellCat() {
+
+                //Storing a fake image into the image data field in the person's record - all users must have an initial value
+                Bitmap fakeImg = BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.alisa);
+                //Call ImageHandler
+                ImageHandler imageMgr = new ImageHandler();
+                //Convert bitmap into byte array
+                imageMgr.setImageDataFromBitmap(fakeImg);
+
+                String image = Base64.encodeToString(imageMgr.getImageData(),
+                        Base64.DEFAULT);
+                getInfo();
+                params.put("source", "Android:App");
+                params.put("user_password", password);
+                params.put("email", email);
+                params.put("img_name", "profile");
+                params.put("create_date", getCurrentDate());
+                params.put("update_date", getCurrentDate());
+                params.put("img_data", image);
+                params.put("currencyID", String.valueOf(2));
+                params.put("statusID", "1");
+
+                jsonResponse = requester.sendPostRequest(url, params);
+            }
+        }).execute();
+
     }
 
     public void btnNext(){
@@ -84,47 +119,17 @@ public class Registro_A extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Functions functionHelper = new Functions();
-                        if(functionHelper.hasEmptyFields(registroAContainer) <= 0){
-                            getInfo(); /*Initialize all variables from inputs*/
-                            if(!functionHelper.isEmailRegistered(dbModel, email)){
-                                if(functionHelper.isEmailFormat(email)){
-                                    if(!functionHelper.isUserRegistered(dbModel, usuario)){
-                                        goToB();
-                                    }else{
-                                        functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.userRegistered(v));
-                                    }
-                                }else{
-                                    functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emailFormat(v));
-                                }
-                            }else{
-                                functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emailRegistered(v));
-                            }
-                        }else{
-                            functionHelper.showMessage(v, getString(R.string.showMessageAtention), functionHelper.emptyFieldMsg(v));
-                        }
+
+                        savePersonIntoDB();
+
                     }
                 }
         );
     }
 
-    public void goToB(){
-        Intent intent = new Intent(Registro_A.this, Registro_B.class);
-        intent.putExtra("_usuario",usuario);
-        intent.putExtra("_password",password);
-        intent.putExtra("_nombre",nombre);
-        intent.putExtra("_surname",surname);
-        intent.putExtra("_uniqueid",uniqueID);
-        intent.putExtra("_email",email);
-        Registro_A.this.startActivity(intent);
-    }
 
     public void getInfo(){
-        usuario = txtUsuarioRegistro.getText().toString();
         password = txtPasswordRegistro.getText().toString();
-        nombre = txtNombreRegistro.getText().toString();
-        surname = txtApellidoRegistro.getText().toString();
-        uniqueID = txtUniqueRegistro.getText().toString();
         email = txtEmailRegistro.getText().toString();
     }
 }

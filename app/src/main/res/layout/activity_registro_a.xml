@@ -43,7 +43,7 @@
             android:orientation="vertical"
             android:theme="@style/ActionBar">
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/lblUserRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +56,21 @@
                 android:maxLength="50"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="@string/no_text" />
+                android:text="@string/no_text" /> -->
+            <TextView
+                android:id="@+id/lblEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/data_screen_control_padding_top"
+                android:text="@string/email" />
+
+            <EditText
+                android:id="@+id/txtEmailRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:maxLength="100"
+                android:inputType="textEmailAddress" />
 
             <TextView
                 android:id="@+id/lblPasswordRegistro"
@@ -73,7 +87,7 @@
                 android:ems="10"
                 android:inputType="textPassword" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/lblNombre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -119,22 +133,7 @@
                 android:ems="10"
                 android:maxLength="5"
                 android:inputType="textPersonName"
-                android:text="@string/no_text" />
-
-            <TextView
-                android:id="@+id/lblEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/data_screen_control_padding_top"
-                android:text="@string/email" />
-
-            <EditText
-                android:id="@+id/txtEmailRegistro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:maxLength="100"
-                android:inputType="textEmailAddress" />
+                android:text="@string/no_text" />-->
 
             <Button
                 android:id="@+id/btnNextRegistro"
