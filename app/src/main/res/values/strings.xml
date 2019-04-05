@@ -44,28 +44,5 @@
     <string name="userRegistered">El usuario ingresado ya esta registrado, por favor, ingresa otro usuario para continuar. \nGracias.</string>
     <string name="userNotRegistered">El usuario ingresado no esta registrado, por favor, ingresa otro usuario para continuar. \nGracias.</string>
     <string name="Dashboard">Dashboard</string>
-
-
-    <string-array name="registro_country">
-        <item name="AS01">Afganistán</item>
-        <item name="EU01">Albania</item>
-        <item name="EU02">Alemania</item>
-        <item name="EU03">Andorra</item>
-        <item name="AF01">Angola</item>
-        <item name="NA01">Anguila</item>
-        <item name="AN">Antártida</item>
-        <item name="NA02">Antigua y Barbuda</item>
-        <item name="AS02">Arabia Saudita</item>
-        <item name="AF">Argelia</item>
-        <item name="SA">Argentina</item>
-        <item name="AS03">Armenia</item>
-        <item name="NA03">Aruba</item>
-        <item name="OC">Australia</item>
-        <item name="EU">Austria</item>
-        <item name="AS04">Azerbaiyán</item>
-        <item name="NA04">Bahamas</item>
-        <item name="AS05">Bangladés</item>
-        <item name="NA05">Barbados</item>
-        <item name="AS06">Baréin</item>
-    </string-array>
+    <string name="facebook_app_id">421096261981838</string> <string name="fb_login_protocol_scheme">fb421096261981838</string>
 </resources>

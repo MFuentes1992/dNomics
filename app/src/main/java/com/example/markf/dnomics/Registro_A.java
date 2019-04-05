@@ -15,13 +15,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class Registro_A extends AppCompatActivity {
@@ -41,7 +54,11 @@ public class Registro_A extends AppCompatActivity {
     HashMap<String, String> params = new HashMap<>();
     RequestHandler requester = new RequestHandler();
 
-    LinearLayout registroAContainer;
+    //Login with Facebook
+    LoginButton fbLogin;
+    CallbackManager callbackMgr;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +75,63 @@ public class Registro_A extends AppCompatActivity {
         lblEmail.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         btnNextTRegistro.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
+        //Facebook login button variables.
+        callbackMgr = CallbackManager.Factory.create();
+        fbLogin = (LoginButton)findViewById(R.id.login_button);
+        List<String> permissions = new ArrayList<>();
+        permissions.add("public_profile");
+        permissions.add("email");
+        fbLogin.setReadPermissions(permissions);
+
+
+        FacebookReady();
         btnNext();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackMgr.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void FacebookReady(){
+        fbLogin.registerCallback(callbackMgr, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                /*Log.d("UserID", loginResult.getAccessToken().getUserId());
+                Toast.makeText(getApplicationContext(), "Auth Success!", Toast.LENGTH_LONG);*/
+                final GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                try {
+                                    String emailID = object.getString("email");
+                                    Profile person = Profile.getCurrentProfile();
+                                    Log.d("userName", person.getName());
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "name,email");
+                request.setParameters(parameters);
+                request.executeAsync();
+
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(getApplicationContext(), "User canceled login", Toast.LENGTH_SHORT);
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT);
+            }
+        });
     }
 
     public String getCurrentDate(){
@@ -132,4 +205,7 @@ public class Registro_A extends AppCompatActivity {
         password = txtPasswordRegistro.getText().toString();
         email = txtEmailRegistro.getText().toString();
     }
+
+
+
 }

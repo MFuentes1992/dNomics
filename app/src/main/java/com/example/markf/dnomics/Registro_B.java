@@ -82,9 +82,9 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
         lblbirthDate.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         lblCountry.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.registro_country, R.layout.support_simple_spinner_dropdown_item);
+        /*ArrayAdapter adapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.registro_country, R.layout.support_simple_spinner_dropdown_item);
         spinnerRegistroCountry.setAdapter(adapter);
-        spinnerRegistroCountry.setOnItemSelectedListener(Registro_B.this);
+        spinnerRegistroCountry.setOnItemSelectedListener(Registro_B.this);*/
         saveData();
     }
 
