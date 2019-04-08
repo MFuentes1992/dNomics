@@ -54,11 +54,6 @@ public class Registro_A extends AppCompatActivity {
     HashMap<String, String> params = new HashMap<>();
     RequestHandler requester = new RequestHandler();
 
-    //Login with Facebook
-    LoginButton fbLogin;
-    CallbackManager callbackMgr;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,64 +70,9 @@ public class Registro_A extends AppCompatActivity {
         lblEmail.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
         btnNextTRegistro.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOMESOLID));
 
-        //Facebook login button variables.
-        callbackMgr = CallbackManager.Factory.create();
-        fbLogin = (LoginButton)findViewById(R.id.login_button);
-        List<String> permissions = new ArrayList<>();
-        permissions.add("public_profile");
-        permissions.add("email");
-        fbLogin.setReadPermissions(permissions);
-
-
-        FacebookReady();
         btnNext();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackMgr.onActivityResult(requestCode, resultCode, data);
-    }
-
-    private void FacebookReady(){
-        fbLogin.registerCallback(callbackMgr, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                /*Log.d("UserID", loginResult.getAccessToken().getUserId());
-                Toast.makeText(getApplicationContext(), "Auth Success!", Toast.LENGTH_LONG);*/
-                final GraphRequest request = GraphRequest.newMeRequest(
-                        loginResult.getAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                try {
-                                    String emailID = object.getString("email");
-                                    Profile person = Profile.getCurrentProfile();
-                                    Log.d("userName", person.getName());
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "name,email");
-                request.setParameters(parameters);
-                request.executeAsync();
-
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(getApplicationContext(), "User canceled login", Toast.LENGTH_SHORT);
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT);
-            }
-        });
-    }
 
     public String getCurrentDate(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -174,7 +114,7 @@ public class Registro_A extends AppCompatActivity {
                 params.put("source", "Android:App");
                 params.put("user_password", password);
                 params.put("email", email);
-                params.put("img_name", "profile");
+                params.put("img_name", email);
                 params.put("create_date", getCurrentDate());
                 params.put("update_date", getCurrentDate());
                 params.put("img_data", image);

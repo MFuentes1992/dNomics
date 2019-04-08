@@ -54,7 +54,7 @@ public class Draft extends AppCompatActivity {
         PersonTO person = new PersonTO();
         DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         SQLiteDatabase db = dbModel.getWritableDatabase();
-        person = dbModel.getPersonByID(personID);
+        //person = dbModel.getPersonByID(personID);
         return person;
     }
 

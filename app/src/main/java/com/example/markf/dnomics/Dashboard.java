@@ -94,10 +94,10 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
 
     private void goToNewReport(){
         Intent intent = new Intent(Dashboard.this, NewReport.class);
-        intent.putExtra("_uniqueid", activeSession.getUniqueID());
+        /*intent.putExtra("_uniqueid", activeSession.getUniqueID());
         intent.putExtra("_usuario", activeSession.getUserName());
         intent.putExtra("_password", activeSession.getPassword());
-        intent.putExtra("personID", String.valueOf(activeSession.getPersonID()));
+        intent.putExtra("personID", String.valueOf(activeSession.getPersonID()));*/
         Dashboard.this.startActivity(intent);
     }
 
@@ -191,14 +191,14 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
             @Override
             public  void finishHellCat(){
                 Log.d("HellCat", "Finishing Thread...");
-                if(activeSession.getName().length() <= 0){
+                /*if(activeSession.getName().length() <= 0){
                     salir();
                 }
                 ImageHandler bitmapImage = new ImageHandler(activeSession.getImgData());
                 profileImage.setImageBitmap(bitmapImage.getImageDataInBitmap());
                 lblUserName.setText(activeSession.getName()+" "+activeSession.getSurName().substring(0,1)+".");
                 totalDraftReports = totalDraft.size();
-                lblDraftTotal.setText(String.valueOf(totalDraftReports));
+                lblDraftTotal.setText(String.valueOf(totalDraftReports));*/
             }
         }).execute();
     }
@@ -207,8 +207,8 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
         PersonTO person = new PersonTO();
         DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         SQLiteDatabase db = dbModel.getWritableDatabase();
-        person = dbModel.getPersonByUserNamePass(db,userName,pass);
-        Log.d("PersonName:", person.getName());
+        //person = dbModel.getPersonByUserNamePass(db,userName,pass);
+        //Log.d("PersonName:", person.getName());
         return person;
     }
 
@@ -242,7 +242,7 @@ public class Dashboard extends AppCompatActivity implements AdapterView.OnItemSe
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard.this, Draft.class);
                 //Intent intent = new Intent(MainActivity.this, Dashboard.class);
-                intent.putExtra("personID", String.valueOf(activeSession.getPersonID()));
+                //intent.putExtra("personID", String.valueOf(activeSession.getPersonID()));
                 Dashboard.this.startActivity(intent);
             }
         });

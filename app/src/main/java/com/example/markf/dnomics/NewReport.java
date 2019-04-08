@@ -126,8 +126,8 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
     private void goToLineItem(long reportID){
         Intent intent = new Intent(NewReport.this, LineItem.class);
         intent.putExtra("reportID", String.valueOf(reportID));
-        intent.putExtra("_usuario", activeSession.getUserName());
-        intent.putExtra("_password",activeSession.getPassword());
+        //intent.putExtra("_usuario", activeSession.getUserName());
+        //intent.putExtra("_password",activeSession.getPassword());
         intent.putExtra("reportNumber", "");
         NewReport.this.startActivity(intent);
     }
@@ -136,8 +136,8 @@ public class NewReport extends AppCompatActivity implements AdapterView.OnItemSe
         PersonTO person = new PersonTO();
         DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         SQLiteDatabase db = dbModel.getWritableDatabase();
-        person = dbModel.getPersonByUserNamePass(db,userName,pass);
-        Log.d("PersonName:", person.getName());
+        //person = dbModel.getPersonByUserNamePass(db,userName,pass);
+        //Log.d("PersonName:", person.getName());
         return person;
     }
 }

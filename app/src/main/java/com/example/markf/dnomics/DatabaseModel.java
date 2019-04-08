@@ -90,7 +90,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return country;
     }
 
-    public boolean updatePerson ( PersonTO _person){
+    /*public boolean updatePerson ( PersonTO _person){
         boolean res = false;
         String tableName = "person";
         PersonTO person = _person;
@@ -111,7 +111,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         long _res = db.update(tableName, contentValue, "personID = "+_person.getPersonID(), null);
         if(_res != -1){res=true;}
         return res;
-    }
+    }*/
 
     public boolean updateReport( ReportTO report ){
         boolean res = false;
@@ -129,7 +129,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return res;
     }
 
-    public boolean insertPersonAsync (SQLiteDatabase db, PersonTO _person){
+    /*public boolean insertPersonAsync (SQLiteDatabase db, PersonTO _person){
         boolean res = false;
         String tableName = "person";
         PersonTO person = _person;
@@ -149,9 +149,9 @@ public class DatabaseModel extends SQLiteOpenHelper {
         long _res = db.insert(tableName, null, contentValue);
         if(_res != -1){res=true;}
         return res;
-    }
+    }*/
 
-    public boolean insertPerson(PersonTO _person){
+    /*public boolean insertPerson(PersonTO _person){
         boolean res = false;
         SQLiteDatabase db = this.getWritableDatabase();
         PersonTO person = _person;
@@ -171,7 +171,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         long _res = db.insert("person", null, contentValue);
         if(_res != -1){res=true;}
         return res;
-    }
+    }*/
 
     public long insertReport(ReportTO report){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -217,7 +217,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
         return report;
     }
 
-    public PersonTO getPersonByUserName(String userName){
+    /*public PersonTO getPersonByUserName(String userName){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+userName+"'", null);
         PersonTO person = new PersonTO();
@@ -238,9 +238,9 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setEstatusID(Integer.parseInt(res.getString(12)));
         }
         return person;
-    }
+    }*/
 
-    public PersonTO getPersonByUserNamePass(String username, String pass){
+    /*public PersonTO getPersonByUserNamePass(String username, String pass){
         PersonTO person = new PersonTO();
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+username+"' and password = '"+pass+"'", null);
@@ -261,9 +261,9 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setEstatusID(Integer.parseInt(res.getString(12)));
         }
         return person;
-    }
+    }*/
 
-    public PersonTO getPersonByUserNamePass(SQLiteDatabase sqLiteDatabase, String username, String pass){
+    /*public PersonTO getPersonByUserNamePass(SQLiteDatabase sqLiteDatabase, String username, String pass){
         PersonTO person = new PersonTO();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE username = '"+username+"' and password = '"+pass+"'", null);
         if(res.getCount() > 0){
@@ -283,9 +283,9 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setEstatusID(Integer.parseInt(res.getString(12)));
         }
         return person;
-    }
+    }*/
 
-    public PersonTO getPersonByEmail(String email){
+    /*public PersonTO getPersonByEmail(String email){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE email = '"+email+"'", null);
         PersonTO person = new PersonTO();
@@ -306,10 +306,10 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setEstatusID(Integer.parseInt(res.getString(12)));
         }
         return person;
-    }
+    }*/
 
 
-    public PersonTO getPersonByID(int personID){
+    /*public PersonTO getPersonByID(int personID){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person WHERE personID = "+personID+"", null);
         PersonTO person = new PersonTO();
@@ -330,10 +330,10 @@ public class DatabaseModel extends SQLiteOpenHelper {
             person.setEstatusID(Integer.parseInt(res.getString(12)));
         }
         return person;
-    }
+    }*/
 
 
-    public ArrayList<PersonTO> getAllPersonData(){
+    /*public ArrayList<PersonTO> getAllPersonData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM person", null);
         ArrayList<PersonTO> personArray = new ArrayList<PersonTO>();
@@ -355,7 +355,7 @@ public class DatabaseModel extends SQLiteOpenHelper {
             personArray.add(person);
         }
         return personArray;
-    }
+    }*/
 
     public ArrayList<ReportTO> getAllDraftReports(int personID){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();

@@ -157,9 +157,9 @@ public class LineItem extends AppCompatActivity {
 
     private void goToDashboard(){
         Intent intent = new Intent(LineItem.this, Dashboard.class);
-        intent.putExtra("_usuario", activeSession.getUserName());
-        intent.putExtra("_password",activeSession.getPassword());
-        intent.putExtra("_personID", String.valueOf(activeSession.getPersonID()));
+        //intent.putExtra("_usuario", activeSession.getUserName());
+        //intent.putExtra("_password",activeSession.getPassword());
+        //intent.putExtra("_personID", String.valueOf(activeSession.getPersonID()));
         LineItem.this.startActivity(intent);
     }
 
@@ -167,8 +167,8 @@ public class LineItem extends AppCompatActivity {
         PersonTO person = new PersonTO();
         DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         SQLiteDatabase db = dbModel.getWritableDatabase();
-        person = dbModel.getPersonByUserNamePass(db,userName,pass);
-        Log.d("PersonName:", person.getName());
+        //person = dbModel.getPersonByUserNamePass(db,userName,pass);
+        //Log.d("PersonName:", person.getName());
         return person;
     }
 }

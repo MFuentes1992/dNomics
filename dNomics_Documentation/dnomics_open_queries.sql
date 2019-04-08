@@ -11,7 +11,7 @@ CREATE TABLE category(categoryID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, ca
 
 CREATE TABLE usuario (userID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, first_name varchar(50), last_name varchar(50), 
 	user_password varchar(100), user_email varchar(100) NOT NULL, currencyID INTEGER NOT NULL,create_date date NOT NULL, update_date date NOT NULL,
-    img_url text,  statusID integer,FOREIGN KEY (statusID) REFERENCES user_status(statusID), FOREIGN KEY(currencyID) REFERENCES currency(currencyID));
+    img_url text,  statusID integer, create_source varchar(100),FOREIGN KEY (statusID) REFERENCES user_status(statusID), FOREIGN KEY(currencyID) REFERENCES currency(currencyID));
     
 CREATE TABLE report_header (reportID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT, userID INTEGER NOT NULL, report_name varchar(100) NOT NULL, 
 	report_date date NOT NULL, report_location varchar(100) NOT NULL, report_number varchar(50) NOT NULL, report_total REAL NOT NULL, statusID INTEGER NOT NULL,
@@ -36,12 +36,14 @@ insert into currency(currency_code, currency_name) values('USD', 'American Dolar
 insert into currency(currency_code, currency_name) values('MXN', 'Mexican Peso');
 
 
-insert into usuario(user_email, user_password, currencyID, create_date, update_date, statusID)values('prueba2@hotmail.com', 0, 2, '2019-03-30', '2019-03-30', 1);
-select user_email, currency_code, currency_name, status_name 
+insert into usuario(user_email, user_password, currencyID, create_date, update_date, statusID, create_source)values('prueba3@hotmail.com', 'des2tramp2dos2', 2, '2019-03-30', '2019-03-30', 1, 'Email');
+select userID, first_name, last_name, user_password, user_email, create_date, update_date, img_url, create_source , currency_name, status_name 
 	from usuario u, user_status us, currency c 
-    where u.statusID = us.statusID and u.currencyID = c.currencyID and u.userID = 1;
+		where u.statusID = us.statusID and u.currencyID = c.currencyID and u.user_email = 'prueba3@hotmail.com' 
+		AND u.user_password = 'des2tramp2dos2' AND u.create_source <> 'Facebook';
 
 UPDATE usuario set img_data = 0 where userID = 8;
 desc usuario;
 select * from usuario;
+SELECT * FROM usuario WHERE user_email = 'prueba3@hotmail.com' AND user_password = 'des2tramp2dos2' AND create_source <> 'Facebook';
 SELECT * FROM usuario WHERE userID = 15;

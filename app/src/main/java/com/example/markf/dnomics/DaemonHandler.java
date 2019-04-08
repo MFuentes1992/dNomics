@@ -41,7 +41,7 @@ public class DaemonHandler extends AsyncTask<String,String,String> {
         //Convert bitmap into byte array
         imageMgr.setImageDataFromBitmap(fakeImg);
         //Insert User's Data
-        dbModel.insertPersonAsync( db,helper.fillPerson(strings[2], strings[3], strings[4], strings[5], strings[6], strings[7], (int)countryID, strings[8], strings[9], strings[10], imageMgr.getImageData()));
+        //dbModel.insertPersonAsync( db,helper.fillPerson(strings[2], strings[3], strings[4], strings[5], strings[6], strings[7], (int)countryID, strings[8], strings[9], strings[10], imageMgr.getImageData()));
         return "";
     }
 

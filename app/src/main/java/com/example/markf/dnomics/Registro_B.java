@@ -161,8 +161,8 @@ public class Registro_B extends AppCompatActivity implements AdapterView.OnItemS
                 String image = Base64.encodeToString(imageMgr.getImageData(),
                         Base64.NO_WRAP);
 
-                boolean flag = dbModel.insertPerson(new Functions().fillPerson(nombre, surname, uniqueID,
-                    usuario, password, email, 1, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
+                //boolean flag = dbModel.insertPerson(new Functions().fillPerson(nombre, surname, uniqueID,
+                    //usuario, password, email, 1, getBirthDate(), getCurrentDate(), getCurrentDate(), imageMgr.getImageData()));
 
                 params.put("source", "Android:App");
                 params.put("first_name", nombre);

@@ -7,162 +7,118 @@ package com.example.markf.dnomics;
 public class PersonTO {
 
     /*Variables*/
-    private int country_alphaID;
-    private int estatusID;
-    private int tipoID;
-    private int deleted;
-    private long personID;
 
-    private String createDate;
-    private String updateDate;
-    private String birthDate;
-
-    private String name;
-    private String surName;
-    private String uniqueID;
-    private String userName;
-    private String password;
-    private String email ;
-    private byte[] imgData;
+    private int userID;
+    private String first_name;
+    private String last_name;
+    private String user_password;
+    private String user_email;
+    private String currency_name;
+    private String create_date;
+    private String update_date;
+    private String img_url;
+    private String status_name;
+    private String create_source;
 
     public PersonTO(){
-
-        tipoID = 0;
-        deleted = 0;
-        personID = 0;
-        estatusID = 0;
-        country_alphaID = 0;
-
-        birthDate = "";
-        createDate = "";
-        updateDate = "";
-
-        name = "";
-        email = "";
-        imgData = null;
-        surName = "";
-        uniqueID = "";
-        userName = "";
-
+        userID = 0;
+        first_name = "";
+        last_name = "";
+        user_password = "";
+        user_email = "";
+        currency_name = "";
+        create_date = "";
+        update_date = "";
+        img_url = "";
+        status_name = "";
+        create_source = "";
     }
 
-    public String getPassword() {
-        return password;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 
-    public long getPersonID() {
-        return personID;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setPersonID(long personID) {
-        this.personID = personID;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
-    public int getCountry_alphaID() {
-        return country_alphaID;
+    public String getLast_name() {
+        return last_name;
     }
 
-    public void setCountry_alphaID(int country_alphaID) {
-        this.country_alphaID = country_alphaID;
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
-    public int getEstatusID() {
-        return estatusID;
+    public String getUser_password() {
+        return user_password;
     }
 
-    public void setEstatusID(int estatusID) {
-        this.estatusID = estatusID;
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
     }
 
-    public int getTipoID() {
-        return tipoID;
+    public String getUser_email() {
+        return user_email;
     }
 
-    public void setTipoID(int tipoID) {
-        this.tipoID = tipoID;
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
     }
 
-    public int getDeleted() {
-        return deleted;
+    public String getCurrency_name() {
+        return currency_name;
     }
 
-    public void setDeleted(int deleted) {
-        this.deleted = deleted;
+    public void setCurrency_name(String currency_name) {
+        this.currency_name = currency_name;
     }
 
-    public String getCreateDate() {
-        return createDate;
+    public String getCreate_date() {
+        return create_date;
     }
 
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
     }
 
-    public String getUpdateDate() {
-        return updateDate;
+    public String getUpdate_date() {
+        return update_date;
     }
 
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdate_date(String update_date) {
+        this.update_date = update_date;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public String getImg_url() {
+        return img_url;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 
-    public String getName() {
-        return name;
+    public String getStatus_name() {
+        return status_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStatus_name(String status_name) {
+        this.status_name = status_name;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getCreate_source() {
+        return create_source;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
-    }
-
-    public String getUniqueID() {
-        return uniqueID;
-    }
-
-    public void setUniqueID(String uniqueID) {
-        this.uniqueID = uniqueID;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public byte[] getImgData() {
-        return imgData;
-    }
-
-    public void setImgData(byte[] imgData) {
-        this.imgData = imgData;
+    public void setCreate_source(String create_source) {
+        this.create_source = create_source;
     }
 }

@@ -134,7 +134,7 @@ public class EditProfile extends AppCompatActivity {
             public void workHellCat() {
                 DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
                 PersonTO updatedInfo = new PersonTO();
-                updatedInfo.setPersonID(activeSession.getPersonID());
+                /*updatedInfo.setPersonID(activeSession.getPersonID());
                 updatedInfo.setUserName(txtUsuarioEditProfile.getText().toString());
                 updatedInfo.setPassword(txtPasswordEditProfile.getText().toString());
                 updatedInfo.setName(txtNombreEditProfile.getText().toString());
@@ -146,7 +146,7 @@ public class EditProfile extends AppCompatActivity {
                 updatedInfo.setUpdateDate(getCurrentDate());
                 updatedInfo.setBirthDate(activeSession.getBirthDate());
                 updatedInfo.setImgData(activeSession.getImgData());
-                updatedFlag = dbModel.updatePerson(updatedInfo);
+                updatedFlag = dbModel.updatePerson(updatedInfo);*/
             }
         }).execute();
     }
@@ -177,7 +177,7 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public  void finishHellCat(){
                 Log.d("HellCat", "Finishing Thread...");
-                if(activeSession.getName().length() <= 0){
+                /*if(activeSession.getName().length() <= 0){
                     salir();
                 }
                 ImageHandler bitmapImage = new ImageHandler(activeSession.getImgData());
@@ -187,7 +187,7 @@ public class EditProfile extends AppCompatActivity {
                 txtNombreEditProfile.setText(activeSession.getName());
                 txtApellidoEditProfile.setText(activeSession.getSurName());
                 txtUniqueEditProfile.setText(activeSession.getUniqueID());
-                txtEmailEditProfile.setText(activeSession.getEmail());
+                txtEmailEditProfile.setText(activeSession.getEmail());*/
             }
         }).execute();
 
@@ -198,8 +198,8 @@ public class EditProfile extends AppCompatActivity {
         PersonTO person = new PersonTO();
         DatabaseModel dbModel = new DatabaseModel(getApplicationContext());
         SQLiteDatabase db = dbModel.getWritableDatabase();
-        person = dbModel.getPersonByUserNamePass(db,userName,pass);
-        Log.d("PersonName:", person.getName());
+        //person = dbModel.getPersonByUserNamePass(db,userName,pass);
+        //Log.d("PersonName:", person.getName());
         return person;
     }
 
@@ -247,7 +247,7 @@ public class EditProfile extends AppCompatActivity {
                 selectPicture.setImageBitmap(bitmap);
                 selectPicture.getLayoutParams().height = 300;
                 selectPicture.getLayoutParams().width = 300;
-                activeSession.setImgData(imageMgr.bitmapToByte(bitmap));
+                //activeSession.setImgData(imageMgr.bitmapToByte(bitmap));
                 selectPicture.requestLayout();
             } catch (IOException e) {
                 e.printStackTrace();

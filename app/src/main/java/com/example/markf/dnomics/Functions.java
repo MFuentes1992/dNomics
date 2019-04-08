@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class Functions {
 
-    public String stringifyPerson(PersonTO person){
+    /*public String stringifyPerson(PersonTO person){
 
         StringBuffer buffer = new StringBuffer();
         buffer.append("ID:"+person.getPersonID()+"\n");
@@ -32,9 +32,9 @@ public class Functions {
         buffer.append("Img_data:"+person.getImgData()+"\n");
         buffer.append("Estatus:"+person.getEstatusID()+"\n");
         return buffer.toString();
-    }
+    }*/
 
-    public String stringifyAllPersons(ArrayList<PersonTO> persons){
+    /*public String stringifyAllPersons(ArrayList<PersonTO> persons){
         StringBuffer buffer = new StringBuffer();
         for(int i = 0; i < persons.size(); i++){
             buffer.append("ID:"+persons.get(i).getPersonID()+"\n");
@@ -53,7 +53,7 @@ public class Functions {
             buffer.append("\n");
         }
         return buffer.toString();
-    }
+    }*/
 
     public String stringifyCountry(CountryTO country){
         StringBuffer buffer = new StringBuffer();
@@ -117,7 +117,7 @@ public class Functions {
     public PersonTO fillPerson(String nombre, String surname, String uniqueID, String usuario, String password,
                                String email, int country, String birthDate, String createDate, String updateDate, byte[] image){
         PersonTO person = new PersonTO();
-        person.setName(nombre);
+        /*person.setName(nombre);
         person.setSurName(surname);
         person.setUniqueID(uniqueID);
         person.setUserName(usuario);
@@ -127,7 +127,7 @@ public class Functions {
         person.setBirthDate(birthDate);
         person.setCreateDate(createDate);
         person.setImgData(image);
-        person.setUpdateDate(updateDate);
+        person.setUpdateDate(updateDate);*/
         return person;
     }
 
@@ -156,22 +156,22 @@ public class Functions {
 
     public boolean isEmailRegistered(DatabaseModel model, String email){
         boolean flag = false;
-        PersonTO person = model.getPersonByEmail(email);
-        flag = person.getPersonID() > 0  ? true : false;
+        //PersonTO person = model.getPersonByEmail(email);
+        //flag = person.getPersonID() > 0  ? true : false;
         return flag;
     }
 
     public boolean isUserRegistered(DatabaseModel model, String userName){
         boolean flag = false;
-        PersonTO person = model.getPersonByUserName(userName);
-        flag = person.getPersonID() > 0  ? true : false;
+        //PersonTO person = model.getPersonByUserName(userName);
+        //flag = person.getPersonID() > 0  ? true : false;
         return flag;
     }
 
     public boolean grantAccess(DatabaseModel model, String userName, String pass){
         boolean flag = false;
-        PersonTO person = model.getPersonByUserNamePass(userName,pass);
-        flag = person.getPersonID() > 0 ? true : false;
+        //PersonTO person = model.getPersonByUserNamePass(userName,pass);
+        //flag = person.getPersonID() > 0 ? true : false;
         return flag;
     }
 
