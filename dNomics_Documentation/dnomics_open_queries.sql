@@ -41,6 +41,11 @@ select userID, first_name, last_name, user_password, user_email, create_date, up
 	from usuario u, user_status us, currency c 
 		where u.statusID = us.statusID and u.currencyID = c.currencyID and u.user_email = 'prueba3@hotmail.com' 
 		AND u.user_password = 'des2tramp2dos2' AND u.create_source <> 'Facebook';
+        
+select userID, first_name, last_name, user_password, user_email, currencyID, create_date, update_date, img_url, statusID, create_source , currency_name, status_name
+    	   from usuario u, user_status us, currency c
+    		   where u.statusID = us.statusID and u.currencyID = c.currencyID and u.user_email = 'prueba3@hotmail.com'
+    		     AND u.user_password ='des2tramp2dos2' AND u.create_source <> 'Facebook'
 
 UPDATE usuario set img_data = 0 where userID = 8;
 desc usuario;
