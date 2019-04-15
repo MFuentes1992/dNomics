@@ -57,19 +57,19 @@ public class MainActivity extends AppCompatActivity {
     //Login with Facebook
     LoginButton fbLogin;
     CallbackManager callbackMgr;
+    boolean fromFacebook = false;
 
     String email;
-    String firstName;
-    String lastName;
+    String password;
+    String firstName = "";
+    String lastName = "";
 
 
     //Variables para el REST service
     String jsonResponse = "";
-    String url = "http://192.168.0.14/add_person.php";
-    HashMap<String, String> params = new HashMap<>();
+    URLHandler URL = new URLHandler();
+    HashMap<String, String> params;
     RequestHandler requester = new RequestHandler();
-    HashMap<String, String> paramsGetUser = new HashMap<>();
-    String urlGetUser = "http://192.168.0.14/get_person.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,44 +141,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 email = txtEmail.getText().toString();
-                final String password =  userPassword.getText().toString();
+                password =  userPassword.getText().toString();
                 if(email.matches("") || password.matches("")){
-                    Toast.makeText(getApplicationContext(), "Algunos de los campos estan vacios", Toast.LENGTH_LONG);
+                    Toast.makeText(MainActivity.this, "Algunos de los campos estan vacios", Toast.LENGTH_LONG).show();
                 }else
                 {
-                    new HellCat(MainActivity.this, new HellCat.AsyncTask() {
-                        @Override
-                        public void finishHellCat() {
-
-                            try {
-
-                                JSONObject json = new JSONObject(jsonResponse);
-                                if(json.getBoolean("success")){
-                                    PersonTO person = new PersonTO();
-                                    person.setUserID(json.getInt("userID"));
-                                    Log.d("userID", String.valueOf(person.getUserID()));
-                                }else{
-                                    Log.d("Message", json.getString("message"));
-                                    lblUserNotFound.setVisibility(View.VISIBLE);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-
-
-                        }
-
-                        @Override
-                        public void workHellCat() {
-                            HashMap<String, String> params = new HashMap<>();
-                            params.put("source", "App:Android");
-                            params.put("email", email);
-                            params.put("user_password", password);
-                            String url = "http://192.168.0.14/get_personSecured.php";
-                            jsonResponse = requester.sendPostRequest(url, params);
-                        }
-                    }).execute();
+                    fromFacebook = false;
+                    isUserRegistered();
                 }
             }
         });
@@ -204,9 +173,13 @@ public class MainActivity extends AppCompatActivity {
                                 try {
                                     email = object.getString("email");
                                     Profile person = Profile.getCurrentProfile();
-                                    firstName = person.getFirstName();
-                                    lastName = person.getLastName();
-                                    //savePersonIntoDB();
+                                    if(person != null){
+                                        firstName = person.getFirstName();
+                                        lastName = person.getLastName();
+                                        fromFacebook = true;
+                                        Log.d("Tag", email);
+                                        Log.d("Tag", firstName);
+                                    }
                                     isUserRegistered();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -250,10 +223,12 @@ public class MainActivity extends AppCompatActivity {
                     if(json.getBoolean("success")){
                         //goToDashboard();
                     }
+                    Log.d("Mensaje", json.getString("message"));
+                    Toast.makeText(MainActivity.this, json.getString("message"), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.d("Message", jsonResponse);
+
             }
 
             @Override
@@ -268,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
 
                 String image = Base64.encodeToString(imageMgr.getImageData(),
                         Base64.DEFAULT);
+                params = new HashMap<>();
                 params.put("source", "Android:App");
                 params.put("email", email);
                 params.put("first_name", firstName);
@@ -276,8 +252,11 @@ public class MainActivity extends AppCompatActivity {
                 params.put("update_date", getCurrentDate());
                 params.put("currencyID", String.valueOf(2));
                 params.put("statusID", "1");
+                if(fromFacebook){
+                    params.put("Facebook", "true");
+                }
 
-                jsonResponse = requester.sendPostRequest(url, params);
+                jsonResponse = requester.sendPostRequest(URL.urlAddUser(), params);
             }
         }).execute();
 
@@ -291,8 +270,18 @@ public class MainActivity extends AppCompatActivity {
                 try {
 
                     JSONObject json = new JSONObject(jsonResponse);
-                    if(json.getBoolean("success")){
-
+                    if(!json.getBoolean("success") && json.getBoolean("new")){
+                        savePersonIntoDB();
+                    }else if(json.getBoolean("success") && json.getInt("userID") > 0){
+                        PersonTO person = new PersonTO();
+                        person.setUserID(json.getInt("userID"));
+                        Log.d("userID", String.valueOf(person.getUserID()));
+                    } else{
+                        lblUserNotFound.setVisibility(View.VISIBLE);
+                        txtEmail.setText("");
+                        userPassword.setText("");
+                        password = null;
+                        Log.d("Message","Prueba");
                     }
                     Log.d("Message",json.getString("message"));
                 } catch (JSONException e) {
@@ -304,9 +293,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void workHellCat() {
-                paramsGetUser.put("source", "App:Android");
-                paramsGetUser.put("email", email);
-                jsonResponse = requester.sendPostRequest(urlGetUser, paramsGetUser);
+                params = new HashMap<>();
+                params.put("source", "App:Android");
+                params.put("email", email);
+                if(password != null){
+                    params.put("user_password", password);
+                }
+                jsonResponse = requester.sendPostRequest(URL.urlGetUser(), params);
             }
         }).execute();
 

@@ -50,5 +50,6 @@ select userID, first_name, last_name, user_password, user_email, currencyID, cre
 UPDATE usuario set img_data = 0 where userID = 8;
 desc usuario;
 select * from usuario;
+SELECT * FROM usuario WHERE user_email = 'markfuentes1992@hotmail.com';
 SELECT * FROM usuario WHERE user_email = 'prueba3@hotmail.com' AND user_password = 'des2tramp2dos2' AND create_source <> 'Facebook';
 SELECT * FROM usuario WHERE userID = 15;

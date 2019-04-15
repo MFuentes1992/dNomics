@@ -50,7 +50,7 @@ public class Registro_A extends AppCompatActivity {
 
     //Variables para el REST service
     String jsonResponse = "";
-    String url = "http://192.168.0.14/add_person.php";
+    URLHandler URL = new URLHandler();
     HashMap<String, String> params = new HashMap<>();
     RequestHandler requester = new RequestHandler();
 
@@ -92,6 +92,8 @@ public class Registro_A extends AppCompatActivity {
                     if(json.getBoolean("success")){
                         //goToDashboard();
                     }
+                    Toast.makeText(Registro_A.this, json.getString("message"), Toast.LENGTH_LONG).show();
+                    //Log.d("Query", json.getString("message"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -121,7 +123,7 @@ public class Registro_A extends AppCompatActivity {
                 params.put("currencyID", String.valueOf(2));
                 params.put("statusID", "1");
 
-                jsonResponse = requester.sendPostRequest(url, params);
+                jsonResponse = requester.sendPostRequest(URL.urlAddUser(), params);
             }
         }).execute();
 
